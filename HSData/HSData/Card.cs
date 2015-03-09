@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace HSData
 {
+    /// <summary>
+    /// Represents a card and all relevant information about that card, barring any modifiers
+    /// </summary>
     public class Card
     {
         public int Cost { get; }

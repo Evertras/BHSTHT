@@ -13,7 +13,7 @@ namespace HSDataTest
         public void HeroCanBeDamaged()
         {
             const int damageAmount = 5;
-            IBoardEntity hero = new Hero(initialHP, initialHP, initialHP);
+            IBoardEntity hero = new HeroState(initialHP, initialHP, initialHP);
 
             hero = hero.Damage(damageAmount);
 
@@ -25,7 +25,7 @@ namespace HSDataTest
         public void HeroCannotBeDamagedForNegative()
         {
             const int negativeDamageAmount = -5;
-            IBoardEntity hero = new Hero(initialHP, initialHP, initialHP);
+            IBoardEntity hero = new HeroState(initialHP, initialHP, initialHP);
 
             hero = hero.Damage(negativeDamageAmount);
 
@@ -37,7 +37,7 @@ namespace HSDataTest
         public void HeroCannotBeDamagedForZero()
         {
             const int zeroDamage = 0;
-            IBoardEntity hero = new Hero(initialHP, initialHP, initialHP);
+            IBoardEntity hero = new HeroState(initialHP, initialHP, initialHP);
 
             hero = hero.Damage(zeroDamage);
 
@@ -48,7 +48,7 @@ namespace HSDataTest
         public void HeroCanBeHealed()
         {
             const int healAmount = 5;
-            IBoardEntity hero = new Hero(initialHP, initialHP, initialHP - healAmount);
+            IBoardEntity hero = new HeroState(initialHP, initialHP, initialHP - healAmount);
 
             hero = hero.Heal(healAmount);
 
@@ -59,11 +59,11 @@ namespace HSDataTest
         public void HeroCantBeHealedPastMaxHealth()
         {
             const int healAmount = 5;
-            IBoardEntity hero = new Hero(initialHP, initialHP, initialHP - (healAmount - 1));
+            IBoardEntity hero = new HeroState(initialHP, initialHP, initialHP - (healAmount - 1));
 
             hero = hero.Heal(healAmount);
 
-            Assert.AreEqual(initialHP, hero.CurrentHealth);
+            Assert.AreEqual(hero.MaxHealth, hero.CurrentHealth);
         }
     }
 }

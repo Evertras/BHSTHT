@@ -32,7 +32,7 @@ namespace HSData
         int CurrentHealth { get; }
 
         /// <summary>
-        /// Damages the entity
+        /// Damages the entity, which may send it into negative health values
         /// </summary>
         /// <param name="damageAmount">A positive integer</param>
         /// <returns></returns>

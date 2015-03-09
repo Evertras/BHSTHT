@@ -9,11 +9,11 @@ using static System.Math;
 namespace HSData
 {
     /// <summary>
-    /// A hero that belongs to the player
+    /// A single immutable hero state that belongs to a player
     /// </summary>
-    public class Hero : IBoardEntity
+    public class HeroState : IBoardEntity
     {
-        public Hero(int initialHealth, int maxHealth, int currentHealth)
+        public HeroState(int initialHealth, int maxHealth, int currentHealth)
         {
             InitialHealth = initialHealth;
             MaxHealth = maxHealth;
@@ -33,7 +33,7 @@ namespace HSData
                 throw new ArgumentOutOfRangeException("Damage must be a positive integer greater than zero");
             }
 
-            return new Hero(InitialHealth, MaxHealth, CurrentHealth - damageAmount);
+            return new HeroState(InitialHealth, MaxHealth, CurrentHealth - damageAmount);
         }
 
         public IBoardEntity Heal(int healAmount)
@@ -43,7 +43,7 @@ namespace HSData
                 throw new ArgumentOutOfRangeException("Healing must be a positive integer greater than zero");
             }
 
-            return new Hero(InitialHealth, MaxHealth, Min(MaxHealth, CurrentHealth + healAmount));
+            return new HeroState(InitialHealth, MaxHealth, Min(MaxHealth, CurrentHealth + healAmount));
         }
     }
 }
