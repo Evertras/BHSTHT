@@ -55,6 +55,7 @@
     <Compile Include="AssumptionTests.cs" />
     <Compile Include="ManaCrystalTest.cs" />
     <Compile Include="DeckTest.cs" />
+    <Compile Include="CardTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HSData\HSData.csproj">
