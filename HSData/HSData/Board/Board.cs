@@ -12,11 +12,18 @@ namespace HSData
     public class Board
     {
         private readonly List<BoardState> boardStates = new List<BoardState>();
+
+        /// <summary>
+        /// Creates an initial board state that can then be acted upon
+        /// </summary>
         public Board(PlayerState playerOneInitialState, PlayerState playerTwoInitialState)
         {
             boardStates.Add(new BoardState(playerOneInitialState, playerTwoInitialState));
         }
 
+        /// <summary>
+        /// Gets the current state of the board
+        /// </summary>
         public BoardState CurrentState
         {
             get
