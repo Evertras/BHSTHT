@@ -8,5 +8,14 @@ namespace HSData
 {
     public class Card
     {
+        public int Cost { get; }
+
+        IReadOnlyList<CardEffect> Effects { get; }
+
+        public Card(int cost, IReadOnlyList<CardEffect> effects)
+        {
+            Cost = cost;
+            Effects = effects;
+        }
     }
 }
