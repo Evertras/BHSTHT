@@ -53,6 +53,8 @@
     <Compile Include="HeroTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AssumptionTests.cs" />
+    <Compile Include="ManaCrystalTest.cs" />
+    <Compile Include="DeckTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HSData\HSData.csproj">

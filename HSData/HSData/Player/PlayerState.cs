@@ -11,7 +11,10 @@ namespace HSData
     /// </summary>
     public class PlayerState
     {
-        public PlayerState(HeroState hero, ManaCrystalState manaCrystals)
+        public PlayerState(HeroState hero,
+                           ManaCrystalState manaCrystals,
+                           DeckState deck,
+                           HandState hand)
         {
             if (hero == null)
             {
@@ -23,8 +26,20 @@ namespace HSData
                 throw new ArgumentNullException("Mana crystal state cannot be null");
             }
 
+            if (deck == null)
+            {
+                throw new ArgumentNullException("Deck cannot be null");
+            }
+
+            if (hand == null)
+            {
+                throw new ArgumentNullException("Hand cannot be null");
+            }
+
             Hero = hero;
             ManaCrystals = manaCrystals;
+            Deck = deck;
+            Hand = hand;
         }
 
         /// <summary>
@@ -38,11 +53,29 @@ namespace HSData
         public HeroState Hero { get; }
 
         /// <summary>
+        /// The player's current deck
+        /// </summary>
+        public DeckState Deck { get; }
+
+        /// <summary>
+        /// The player's current hand
+        /// </summary>
+        public HandState Hand { get; }
+
+        /// <summary>
         /// Starts a new turn for the player
         /// </summary>
         public PlayerState BeginTurn()
         {
-            return new PlayerState(Hero, ManaCrystals.BeginTurn());
+            Card drawnCard;
+            DeckState newDeck = Deck.DrawRandom(out drawnCard);
+            HandState newHand = Hand.AddCard(drawnCard);
+
+            return new PlayerState(
+                hero: Hero,
+                manaCrystals: ManaCrystals.BeginTurn(),
+                deck: newDeck,
+                hand: newHand);
         }
     }
 }
