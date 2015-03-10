@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HSData;
+using System.Collections.Generic;
 
 namespace HSDataTest
 {
@@ -67,6 +68,49 @@ namespace HSDataTest
             var alteredState = instance.Apply(board);
 
             Assert.AreEqual(heroHealth, alteredState.PlayerTwo.Hero.CurrentHealth);
+        }
+
+        [TestMethod]
+        public void BothPlayersCanDrawCard()
+        {
+            Card someCard = new Card(1, Card.NoEffects);
+
+            DeckState simpleDeck = new DeckState(new List<Card> { someCard });
+
+            BoardState board =
+                new BoardState(
+                    new PlayerState(
+                        new HeroState(heroHealth, heroHealth, heroHealth),
+                        ManaCrystalState.StartingValue,
+                        simpleDeck,
+                        HandState.EmptyHand),
+                    new PlayerState(
+                        new HeroState(heroHealth, heroHealth, heroHealth),
+                        ManaCrystalState.StartingValue,
+                        simpleDeck,
+                        HandState.EmptyHand),
+                    BoardState.PlayerTurn.PlayerOne
+                    );
+
+            CardEffect drawEffect = new CardEffectDraw();
+
+            IBoardEntity target = board.PlayerOne.Hero;
+
+            var instance = drawEffect.GenerateEvent(target);
+
+            Assert.AreEqual(0, board.PlayerOne.Hand.Cards.Count);
+
+            board = instance.Apply(board);
+
+            Assert.AreEqual(1, board.PlayerOne.Hand.Cards.Count);
+
+            Assert.AreEqual(0, board.PlayerTwo.Hand.Cards.Count);
+
+            target = board.PlayerTwo.Hero;
+            instance = drawEffect.GenerateEvent(target);
+            board = instance.Apply(board);
+
+            Assert.AreEqual(1, board.PlayerTwo.Hand.Cards.Count);
         }
     }
 }

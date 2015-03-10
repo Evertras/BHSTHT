@@ -67,20 +67,31 @@ namespace HSData
         /// </summary>
         public PlayerState BeginTurn()
         {
-            Card drawnCard;
-            DeckState newDeck = Deck.DrawRandom(out drawnCard);
-            HandState newHand = Hand.AddCard(drawnCard);
+            var playerState = Draw();
 
             return new PlayerState(
-                hero: Hero,
-                manaCrystals: ManaCrystals.BeginTurn(),
-                deck: newDeck,
-                hand: newHand);
+                playerState.Hero,
+                playerState.ManaCrystals.BeginTurn(),
+                playerState.Deck,
+                playerState.Hand);
         }
 
         public PlayerState AlterHero(HeroState hero)
         {
             return new PlayerState(hero, ManaCrystals, Deck, Hand);
+        }
+
+        public PlayerState Draw()
+        {
+            Card drawnCard;
+            DeckState newDeck = Deck.DrawRandom(out drawnCard);
+            HandState newHand = Hand.AddCard(drawnCard);
+
+            return new PlayerState(
+                Hero,
+                ManaCrystals,
+                newDeck,
+                newHand);
         }
     }
 }

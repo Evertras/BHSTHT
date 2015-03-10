@@ -42,7 +42,9 @@
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardState.cs" />
     <Compile Include="CardEffects\CardEffectDamage.cs" />
+    <Compile Include="CardEffects\CardEffectDraw.cs" />
     <Compile Include="CardEffects\CardEffectHeal.cs" />
+    <Compile Include="GameEvents\GameEventDraw.cs" />
     <Compile Include="GameEvents\GameEventTargeted.cs" />
     <Compile Include="GameEvents\GameEventTargetedDamage.cs" />
     <Compile Include="CardEffects\CardEffectTargeted.cs" />
