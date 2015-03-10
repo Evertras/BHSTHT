@@ -38,7 +38,7 @@ namespace HSData
         /// </summary>
         public Board(IPlayerState playerOneInitialState, IPlayerState playerTwoInitialState)
         {
-            boardStates.Add(new BoardStateHistory(null, new BoardState(playerOneInitialState, playerTwoInitialState, BoardState.PlayerTurn.PlayerOne)));
+            boardStates.Add(new BoardStateHistory(null, new BoardState(playerOneInitialState?.BeginTurn(), playerTwoInitialState, BoardState.PlayerTurn.PlayerOne)));
         }
 
         /// <summary>

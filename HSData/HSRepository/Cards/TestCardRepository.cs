@@ -12,12 +12,17 @@ namespace HSRepository
     /// </summary>
     public class TestCardRepository : ICardRepository
     {
-        private List<Card> cards = new List<Card>();
+        private List<ICard> cards = null;
 
-        public IReadOnlyList<Card> Cards
+        public IReadOnlyList<ICard> Cards
         {
             get
             {
+                if (cards == null)
+                {
+                    Load();
+                }
+
                 return cards;
             }
         }
@@ -37,10 +42,12 @@ namespace HSRepository
         /// </summary>
         public void Load()
         {
+            cards = new List<ICard>();
+
             // a through e 1-5
-            for (int i = 0; i < 5; ++i)
+            for (int i = 1; i <= 5; ++i)
             {
-                cards.Add(GenerateDamageCard(i + 1, i, i));
+                cards.Add(GenerateDamageCard(i, i, i));
             }
 
             // f 6
@@ -51,6 +58,18 @@ namespace HSRepository
 
             // TODO:
             // h 8 to be added
+        }
+
+        public ICard GetByID(int id)
+        {
+            ICard card = Cards.FirstOrDefault(c => c.ID == id);
+
+            if (card == null)
+            {
+                throw new ArgumentOutOfRangeException("Couldn't find card with ID " + id.ToString());
+            }
+
+            return card;
         }
     }
 }

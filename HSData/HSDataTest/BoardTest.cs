@@ -1,17 +1,18 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HSData;
+using HSRepository;
 
 namespace HSDataTest
 {
     [TestClass]
     public class BoardTest
     {
+        const int initialHP = 30;
+
         [TestMethod]
         public void CanStartGame()
         {
-            const int initialHP = 30;
-
             var board = new Board(
                 new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand),
                 new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand));
@@ -21,8 +22,6 @@ namespace HSDataTest
         [ExpectedException(typeof(ArgumentNullException))]
         public void CantHaveNullPlayerOne()
         {
-            const int initialHP = 30;
-
             var board = new Board(
                 null,
                 new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand));
@@ -32,22 +31,45 @@ namespace HSDataTest
         [ExpectedException(typeof(ArgumentNullException))]
         public void CantHaveNullPlayerTwo()
         {
-            const int initialHP = 30;
-
             var board = new Board(
                 new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand),
                 null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CantHaveSamePlayerInstance()
+        public void ManaCrystalMaximumsAdvanceProperlyEachTurn()
         {
-            const int initialHP = 30;
+            IDeckRepository testDeckRepository = new TestDeckRepository(new TestCardRepository());
 
-            var playerInstance = new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand);
+            IDeckState playerOneDeck = testDeckRepository.Load();
+            IDeckState playerTwoDeck = testDeckRepository.Load();
 
-            var board = new Board(playerInstance, playerInstance);
+            var board =
+                new Board(
+                    new PlayerState(
+                        new HeroState(initialHP, initialHP, initialHP),
+                        ManaCrystalState.StartingValue,
+                        playerOneDeck,
+                        HandState.EmptyHand),
+
+                    new PlayerState(
+                        new HeroState(initialHP, initialHP, initialHP),
+                        ManaCrystalState.StartingValue,
+                        playerTwoDeck,
+                        HandState.EmptyHand));
+
+            Assert.AreEqual(1, board.CurrentState.PlayerOne.ManaCrystals.Maximum);
+            Assert.AreEqual(0, board.CurrentState.PlayerTwo.ManaCrystals.Maximum);
+
+            board.ApplyEvent(new GameEventTurnEnd());
+
+            Assert.AreEqual(1, board.CurrentState.PlayerOne.ManaCrystals.Maximum);
+            Assert.AreEqual(1, board.CurrentState.PlayerTwo.ManaCrystals.Maximum);
+
+            board.ApplyEvent(new GameEventTurnEnd());
+
+            Assert.AreEqual(2, board.CurrentState.PlayerOne.ManaCrystals.Maximum);
+            Assert.AreEqual(1, board.CurrentState.PlayerTwo.ManaCrystals.Maximum);
         }
     }
 }

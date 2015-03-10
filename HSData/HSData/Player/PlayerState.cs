@@ -83,15 +83,26 @@ namespace HSData
 
         public IPlayerState Draw()
         {
-            ICard drawnCard;
-            IDeckState newDeck = Deck.DrawRandom(out drawnCard);
-            IHandState newHand = Hand.AddCard(drawnCard);
+            try
+            {
+                ICard drawnCard;
+                IDeckState newDeck = Deck.DrawRandom(out drawnCard);
+                IHandState newHand = Hand.AddCard(drawnCard);
 
-            return new PlayerState(
-                Hero,
-                ManaCrystals,
-                newDeck,
-                newHand);
+                return new PlayerState(
+                    Hero,
+                    ManaCrystals,
+                    newDeck,
+                    newHand);
+            }
+            catch (InvalidOperationException)
+            {
+                return new PlayerState(
+                    Hero.Damage(1),
+                    ManaCrystals,
+                    Deck,
+                    Hand);
+            }
         }
     }
 }

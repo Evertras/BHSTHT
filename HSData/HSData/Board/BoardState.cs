@@ -30,18 +30,13 @@ namespace HSData
         public PlayerTurn ActivePlayer { get; }
 
         /// <summary>
-        /// Currently we only support a two player board, and each player must be unique
+        /// Currently we only support a two player board
         /// </summary>
         public BoardState(IPlayerState playerOne, IPlayerState playerTwo, PlayerTurn activePlayer)
         {
             if (playerOne == null || playerTwo == null)
             {
                 throw new ArgumentNullException("Player cannot be null");
-            }
-
-            if (playerOne == playerTwo)
-            {
-                throw new ArgumentException("Players cannot be set as a reference to each other");
             }
 
             PlayerOne = playerOne;

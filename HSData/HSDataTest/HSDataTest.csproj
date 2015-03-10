@@ -64,6 +64,14 @@
       <Project>{86646248-3a8c-48b8-aa87-e321fbeb24e4}</Project>
       <Name>HSData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HSRepository\HSRepository.csproj">
+      <Project>{f2b4c916-bed0-4f7c-aa37-bfb3e1e04701}</Project>
+      <Name>HSRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Localization\Localization.csproj">
+      <Project>{a345410b-9357-493e-89f4-0bd33c9b6fc4}</Project>
+      <Name>Localization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

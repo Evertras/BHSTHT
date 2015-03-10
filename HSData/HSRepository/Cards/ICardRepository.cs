@@ -9,8 +9,10 @@ namespace HSRepository
 {
     public interface ICardRepository
     {
-        IReadOnlyList<Card> Cards { get; }
+        IReadOnlyList<ICard> Cards { get; }
 
         void Load();
+
+        ICard GetByID(int id);
     }
 }
