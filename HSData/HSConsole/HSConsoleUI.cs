@@ -42,7 +42,22 @@ namespace HSConsole
 
             for (int i = 0; i < playerState.Hand.Cards.Count; ++i)
             {
-                Write("[] ");
+                Write($"[{i+1}] ");
+            }
+        }
+
+        private void DrawHand(IPlayerState playerState)
+        {
+            ForegroundColor = ConsoleColor.White;
+
+            for (int i = 0; i < playerState.Hand.Cards.Count; ++i)
+            {
+                var card = playerState.Hand.Cards[i];
+
+                CursorTop = 4 + i;
+                CursorLeft = 6;
+
+                Write($"{i + 1}) ({card.Cost})");
             }
         }
 
@@ -64,6 +79,9 @@ namespace HSConsole
             // Draw active player on bottom
             CursorTop = WindowHeight - 3;
             DrawPlayer(activePlayer);
+
+            // Show the active player's hand
+            DrawHand(activePlayer);
 
             ForegroundColor = originalForegroundColor;
         }
