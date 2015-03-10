@@ -18,11 +18,13 @@ namespace HSDataTest
             BoardState boardState = 
                 new BoardState(
                     new PlayerState(
+                        "P1",
                         new HeroState(heroHealth, heroHealth, heroHealth),
                         ManaCrystalState.StartingValue,
                         DeckState.EmptyDeck,
                         HandState.EmptyHand),
                     new PlayerState(
+                        "P2",
                         new HeroState(heroHealth, heroHealth, heroHealth),
                         ManaCrystalState.StartingValue,
                         DeckState.EmptyDeck,
@@ -48,11 +50,13 @@ namespace HSDataTest
             BoardState board =
                 new BoardState(
                     new PlayerState(
+                        "P1",
                         new HeroState(heroHealth, heroHealth, heroHealth),
                         ManaCrystalState.StartingValue,
                         DeckState.EmptyDeck,
                         HandState.EmptyHand),
                     new PlayerState(
+                        "P2",
                         new HeroState(heroHealth, heroHealth, heroHealth).Damage(damageToHeal) as HeroState,
                         ManaCrystalState.StartingValue,
                         DeckState.EmptyDeck,
@@ -80,11 +84,13 @@ namespace HSDataTest
             IBoardState board =
                 new BoardState(
                     new PlayerState(
+                        "P1",
                         new HeroState(heroHealth, heroHealth, heroHealth),
                         ManaCrystalState.StartingValue,
                         simpleDeck,
                         HandState.EmptyHand),
                     new PlayerState(
+                        "P2",
                         new HeroState(heroHealth, heroHealth, heroHealth),
                         ManaCrystalState.StartingValue,
                         simpleDeck,

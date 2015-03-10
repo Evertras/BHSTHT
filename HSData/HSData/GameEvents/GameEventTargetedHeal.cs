@@ -33,13 +33,13 @@ namespace HSData
 
             if (Target == playerOne.Hero)
             {
-                playerOne = new PlayerState(playerOne.Hero.Heal(Effect.Amount) as HeroState, playerOne.ManaCrystals, playerOne.Deck, playerOne.Hand);
+                playerOne = playerOne.AlterHero(playerOne.Hero.Heal(Effect.Amount));
 
                 updatedState = initialState.AlterPlayerOne(playerOne);
             }
             else if (Target == playerTwo.Hero)
             {
-                playerTwo = new PlayerState(playerTwo.Hero.Heal(Effect.Amount) as HeroState, playerTwo.ManaCrystals, playerTwo.Deck, playerTwo.Hand);
+                playerTwo = playerTwo.AlterHero(playerTwo.Hero.Heal(Effect.Amount));
 
                 updatedState = initialState.AlterPlayerTwo(playerTwo);
             }

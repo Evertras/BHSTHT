@@ -17,6 +17,7 @@ namespace HSConsole
 
             IPlayerState playerOneInitialState =
                 new PlayerState(
+                    "Player One",
                     new HeroState(initialHP, initialHP, initialHP),
                     ManaCrystalState.StartingValue,
                     deckRepository.Load(),
@@ -25,6 +26,7 @@ namespace HSConsole
 
             IPlayerState playerTwoInitialState =
                 new PlayerState(
+                    "Player Two",
                     new HeroState(initialHP, initialHP, initialHP),
                     ManaCrystalState.StartingValue,
                     deckRepository.Load(),

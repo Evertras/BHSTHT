@@ -11,11 +11,17 @@ namespace HSData
     /// </summary>
     public class PlayerState : IPlayerState
     {
-        public PlayerState(IBoardEntity hero,
+        public PlayerState(string battleTag,
+                           IBoardEntity hero,
                            IManaCrystalState manaCrystals,
                            IDeckState deck,
                            IHandState hand)
         {
+            if (string.IsNullOrEmpty(battleTag?.Trim()))
+            {
+                throw new ArgumentNullException("Battle tag cannot be empty");
+            }
+
             if (hero == null)
             {
                 throw new ArgumentNullException("Hero cannot be null");
@@ -40,7 +46,13 @@ namespace HSData
             ManaCrystals = manaCrystals;
             Deck = deck;
             Hand = hand;
+            BattleTag = battleTag.Trim();
         }
+
+        /// <summary>
+        /// The battle tag of the player
+        /// </summary>
+        public string BattleTag { get; }
 
         /// <summary>
         /// The mana crystals of the player
@@ -75,15 +87,16 @@ namespace HSData
             var playerState = Draw();
 
             return new PlayerState(
+                playerState.BattleTag,
                 playerState.Hero,
                 playerState.ManaCrystals.BeginTurn(),
                 playerState.Deck,
                 playerState.Hand);
         }
 
-        public IPlayerState AlterHero(HeroState hero)
+        public IPlayerState AlterHero(IBoardEntity hero)
         {
-            return new PlayerState(hero, ManaCrystals, Deck, Hand);
+            return new PlayerState(BattleTag, hero, ManaCrystals, Deck, Hand);
         }
 
         public IPlayerState Draw()
@@ -95,6 +108,7 @@ namespace HSData
                 IHandState newHand = Hand.AddCard(drawnCard);
 
                 return new PlayerState(
+                    BattleTag,
                     Hero,
                     ManaCrystals,
                     newDeck,
@@ -102,11 +116,7 @@ namespace HSData
             }
             catch (InvalidOperationException)
             {
-                return new PlayerState(
-                    Hero.Damage(1),
-                    ManaCrystals,
-                    Deck,
-                    Hand);
+                return AlterHero(Hero.Damage(1));
             }
         }
     }

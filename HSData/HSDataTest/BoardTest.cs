@@ -14,8 +14,8 @@ namespace HSDataTest
         public void CanStartGame()
         {
             var board = new Board(
-                new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand),
-                new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand));
+                new PlayerState("P1", new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand),
+                new PlayerState("P2", new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand));
         }
 
         [TestMethod]
@@ -24,7 +24,7 @@ namespace HSDataTest
         {
             var board = new Board(
                 null,
-                new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand));
+                new PlayerState("P2", new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand));
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace HSDataTest
         public void CantHaveNullPlayerTwo()
         {
             var board = new Board(
-                new PlayerState(new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand),
+                new PlayerState("P1", new HeroState(initialHP, initialHP, initialHP), ManaCrystalState.StartingValue, DeckState.EmptyDeck, HandState.EmptyHand),
                 null);
         }
 
@@ -47,12 +47,14 @@ namespace HSDataTest
             var board =
                 new Board(
                     new PlayerState(
+                        "P1",
                         new HeroState(initialHP, initialHP, initialHP),
                         ManaCrystalState.StartingValue,
                         playerOneDeck,
                         HandState.EmptyHand),
 
                     new PlayerState(
+                        "P2",
                         new HeroState(initialHP, initialHP, initialHP),
                         ManaCrystalState.StartingValue,
                         playerTwoDeck,

@@ -6,6 +6,11 @@
     public interface IPlayerState
     {
         /// <summary>
+        /// A raw string indicating the player's battle tag
+        /// </summary>
+        string BattleTag { get; }
+
+        /// <summary>
         /// The player's deck
         /// </summary>
         IDeckState Deck { get; }
@@ -34,7 +39,7 @@
         /// Alters the player's hero, returning a new player state representing the updated hero state
         /// </summary>
         /// <param name="hero">The hero state to update to</param>
-        IPlayerState AlterHero(HeroState hero);
+        IPlayerState AlterHero(IBoardEntity hero);
 
         /// <summary>
         /// Begins the turn, applying all applicable events and returning the updated state
