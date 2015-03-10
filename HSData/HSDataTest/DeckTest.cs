@@ -15,7 +15,7 @@ namespace HSDataTest
             var sampleCard = new Card(1, sampleEffects);
             var cards = new List<Card>();
 
-            DeckState deck = DeckState.EmptyDeck;
+            IDeckState deck = DeckState.EmptyDeck;
 
             Assert.AreEqual(0, deck.Cards.Count);
 
@@ -32,7 +32,7 @@ namespace HSDataTest
             var sampleCard = new Card(1, sampleEffects);
             var cards = new List<Card>();
 
-            DeckState deck = DeckState.EmptyDeck;
+            IDeckState deck = DeckState.EmptyDeck;
 
             Assert.AreEqual(0, deck.Cards.Count);
 
@@ -41,7 +41,7 @@ namespace HSDataTest
 
             Assert.AreEqual(2, deck.Cards.Count);
 
-            Card drawnCard;
+            ICard drawnCard;
 
             deck = deck.DrawRandom(out drawnCard);
 
@@ -54,8 +54,8 @@ namespace HSDataTest
         [ExpectedException(typeof(InvalidOperationException))]
         public void CantDrawFromEmptyDeck()
         {
-            DeckState deck = DeckState.EmptyDeck;
-            Card drawnCard;
+            IDeckState deck = DeckState.EmptyDeck;
+            ICard drawnCard;
 
             Assert.AreEqual(0, deck.Cards.Count);
 

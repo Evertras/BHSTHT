@@ -7,9 +7,10 @@ namespace HSData
     /// </summary>
     public interface IDeckState
     {
-        IReadOnlyList<Card> Cards { get; }
+        IReadOnlyList<ICard> Cards { get; }
 
-        DeckState AddCard(Card card);
-        DeckState DrawRandom(out Card drawn);
+        IDeckState AddCard(ICard card);
+
+        IDeckState DrawRandom(out ICard drawn);
     }
 }

@@ -5,7 +5,7 @@
     /// </summary>
     public interface IBoard
     {
-        BoardState CurrentState { get; }
+        IBoardState CurrentState { get; }
 
         void ApplyEvent(IGameEvent gameEvent);
     }

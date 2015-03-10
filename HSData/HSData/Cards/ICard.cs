@@ -15,6 +15,6 @@ namespace HSData
         /// <summary>
         /// The effects of the card when it's played
         /// </summary>
-        IReadOnlyList<CardEffect> Effects { get; }
+        IReadOnlyList<ICardEffect> Effects { get; }
     }
 }

@@ -11,10 +11,10 @@ namespace HSData
     /// </summary>
     public class PlayerState : IPlayerState
     {
-        public PlayerState(HeroState hero,
-                           ManaCrystalState manaCrystals,
-                           DeckState deck,
-                           HandState hand)
+        public PlayerState(IBoardEntity hero,
+                           IManaCrystalState manaCrystals,
+                           IDeckState deck,
+                           IHandState hand)
         {
             if (hero == null)
             {
@@ -45,27 +45,27 @@ namespace HSData
         /// <summary>
         /// The mana crystals of the player
         /// </summary>
-        public ManaCrystalState ManaCrystals { get; }
+        public IManaCrystalState ManaCrystals { get; }
 
         /// <summary>
         /// The player's one and only hero
         /// </summary>
-        public HeroState Hero { get; }
+        public IBoardEntity Hero { get; }
 
         /// <summary>
         /// The player's current deck
         /// </summary>
-        public DeckState Deck { get; }
+        public IDeckState Deck { get; }
 
         /// <summary>
         /// The player's current hand
         /// </summary>
-        public HandState Hand { get; }
+        public IHandState Hand { get; }
 
         /// <summary>
         /// Starts a new turn for the player
         /// </summary>
-        public PlayerState BeginTurn()
+        public IPlayerState BeginTurn()
         {
             var playerState = Draw();
 
@@ -76,16 +76,16 @@ namespace HSData
                 playerState.Hand);
         }
 
-        public PlayerState AlterHero(HeroState hero)
+        public IPlayerState AlterHero(HeroState hero)
         {
             return new PlayerState(hero, ManaCrystals, Deck, Hand);
         }
 
-        public PlayerState Draw()
+        public IPlayerState Draw()
         {
-            Card drawnCard;
-            DeckState newDeck = Deck.DrawRandom(out drawnCard);
-            HandState newHand = Hand.AddCard(drawnCard);
+            ICard drawnCard;
+            IDeckState newDeck = Deck.DrawRandom(out drawnCard);
+            IHandState newHand = Hand.AddCard(drawnCard);
 
             return new PlayerState(
                 Hero,

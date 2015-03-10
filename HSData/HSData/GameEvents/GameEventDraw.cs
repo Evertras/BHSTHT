@@ -16,7 +16,7 @@ namespace HSData
             }
         }
 
-        public BoardState Apply(BoardState initialState)
+        public IBoardState Apply(IBoardState initialState)
         {
             if (Target == initialState.PlayerOne.Hero)
             {

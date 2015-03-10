@@ -11,13 +11,13 @@ namespace HSData
     /// </summary>
     public class Card : ICard
     {
-        public static readonly IReadOnlyList<CardEffect> NoEffects = new List<CardEffect>();
+        public static readonly IReadOnlyList<ICardEffect> NoEffects = new List<ICardEffect>();
 
         public int Cost { get; }
 
-        public IReadOnlyList<CardEffect> Effects { get; }
+        public IReadOnlyList<ICardEffect> Effects { get; }
 
-        public Card(int cost, IReadOnlyList<CardEffect> effects)
+        public Card(int cost, IReadOnlyList<ICardEffect> effects)
         {
             if (cost < 0)
             {

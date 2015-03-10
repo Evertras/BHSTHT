@@ -8,6 +8,6 @@ namespace HSData
 {
     public interface IGameEvent
     {
-        BoardState Apply(BoardState initialState);
+        IBoardState Apply(IBoardState initialState);
     }
 }

@@ -11,9 +11,9 @@ namespace HSData
     /// </summary>
     public class HandState : IHandState
     {
-        public static readonly HandState EmptyHand = new HandState(new List<Card>());
+        public static readonly HandState EmptyHand = new HandState(new List<ICard>());
 
-        public HandState(IReadOnlyList<Card> cards)
+        public HandState(IReadOnlyList<ICard> cards)
         {
             if (cards == null)
             {
@@ -22,15 +22,15 @@ namespace HSData
 
             Cards = cards;
         }
-        public IReadOnlyList<Card> Cards { get; }
+        public IReadOnlyList<ICard> Cards { get; }
 
         /// <summary>
         /// Adds a card to the hand
         /// </summary>
         /// <param name="card">The card to add</param>
-        public HandState AddCard(Card card)
+        public IHandState AddCard(ICard card)
         {
-            List<Card> newCards = new List<Card>(Cards);
+            List<ICard> newCards = new List<ICard>(Cards);
 
             newCards.Add(card);
 
@@ -41,9 +41,9 @@ namespace HSData
         /// Removes a card from the hand
         /// </summary>
         /// <param name="card">The card to remove</param>
-        public HandState RemoveCard(Card card)
+        public IHandState RemoveCard(ICard card)
         {
-            List<Card> newCards = new List<Card>(Cards);
+            List<ICard> newCards = new List<ICard>(Cards);
 
             newCards.Remove(card);
 

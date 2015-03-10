@@ -8,37 +8,37 @@
         /// <summary>
         /// The player's deck
         /// </summary>
-        DeckState Deck { get; }
+        IDeckState Deck { get; }
 
         /// <summary>
         /// The player's hand
         /// </summary>
-        HandState Hand { get; }
+        IHandState Hand { get; }
 
         /// <summary>
         /// The player's hero
         /// </summary>
-        HeroState Hero { get; }
+        IBoardEntity Hero { get; }
 
         /// <summary>
         /// The player's mana crystals
         /// </summary>
-        ManaCrystalState ManaCrystals { get; }
+        IManaCrystalState ManaCrystals { get; }
 
         /// <summary>
         /// Alters the player's hero, returning a new player state representing the updated hero state
         /// </summary>
         /// <param name="hero">The hero state to update to</param>
-        PlayerState AlterHero(HeroState hero);
+        IPlayerState AlterHero(HeroState hero);
 
         /// <summary>
         /// Begins the turn, applying all applicable events and returning the updated state
         /// </summary>
-        PlayerState BeginTurn();
+        IPlayerState BeginTurn();
 
         /// <summary>
         /// Draws a card, returning the updated state
         /// </summary>
-        PlayerState Draw();
+        IPlayerState Draw();
     }
 }

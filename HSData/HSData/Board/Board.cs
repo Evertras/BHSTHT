@@ -13,7 +13,7 @@ namespace HSData
     {
         public struct BoardStateHistory
         {
-            internal BoardStateHistory(IGameEvent gameEvent, BoardState boardState)
+            internal BoardStateHistory(IGameEvent gameEvent, IBoardState boardState)
             {
                 // Event can be null
                 Event = gameEvent;
@@ -28,7 +28,7 @@ namespace HSData
             }
 
             public IGameEvent Event { get; }
-            public BoardState BoardState { get; }
+            public IBoardState BoardState { get; }
         }
 
         private readonly List<BoardStateHistory> boardStates = new List<BoardStateHistory>();
@@ -36,7 +36,7 @@ namespace HSData
         /// <summary>
         /// Creates an initial board state that can then be acted upon
         /// </summary>
-        public Board(PlayerState playerOneInitialState, PlayerState playerTwoInitialState)
+        public Board(IPlayerState playerOneInitialState, IPlayerState playerTwoInitialState)
         {
             boardStates.Add(new BoardStateHistory(null, new BoardState(playerOneInitialState, playerTwoInitialState, BoardState.PlayerTurn.PlayerOne)));
         }
@@ -44,7 +44,7 @@ namespace HSData
         /// <summary>
         /// Gets the current state of the board
         /// </summary>
-        public BoardState CurrentState
+        public IBoardState CurrentState
         {
             get
             {

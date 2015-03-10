@@ -20,7 +20,7 @@ namespace HSData
 
         public CardEffectHeal Effect { get; }
 
-        public BoardState Apply(BoardState initialState)
+        public IBoardState Apply(IBoardState initialState)
         {
             if (initialState == null)
             {

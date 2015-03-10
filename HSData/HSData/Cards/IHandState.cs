@@ -10,13 +10,13 @@ namespace HSData
         /// <summary>
         /// The cards in the hand
         /// </summary>
-        IReadOnlyList<Card> Cards { get; }
+        IReadOnlyList<ICard> Cards { get; }
 
         /// <summary>
         /// Adds a card to the hand, returning a new state representing the new hand
         /// </summary>
         /// <param name="card">The card to add</param>
-        HandState AddCard(Card card);
+        IHandState AddCard(ICard card);
 
         /// <summary>
         /// Removes a card from the hand, returning a new state representing the new hand.
@@ -24,6 +24,6 @@ namespace HSData
         /// will be removed
         /// </summary>
         /// <param name="card">The card to remove</param>
-        HandState RemoveCard(Card card);
+        IHandState RemoveCard(ICard card);
     }
 }

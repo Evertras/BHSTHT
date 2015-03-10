@@ -16,9 +16,9 @@ namespace HSData
         /// <summary>
         /// Represents an empty deck state
         /// </summary>
-        public static readonly DeckState EmptyDeck = new DeckState(new List<Card>());
+        public static readonly DeckState EmptyDeck = new DeckState(new List<ICard>());
 
-        public DeckState(IReadOnlyList<Card> cards)
+        public DeckState(IReadOnlyList<ICard> cards)
         {
             if (cards == null)
             {
@@ -31,16 +31,16 @@ namespace HSData
         /// <summary>
         /// The cards that are currently in the deck
         /// </summary>
-        public IReadOnlyList<Card> Cards { get; }
+        public IReadOnlyList<ICard> Cards { get; }
 
         /// <summary>
         /// Adds a card to the deck
         /// </summary>
         /// <param name="card">The card to add</param>
         /// <returns>A new deck state including the added card</returns>
-        public DeckState AddCard(Card card)
+        public IDeckState AddCard(ICard card)
         {
-            List<Card> newCards = new List<Card>(Cards);
+            List<ICard> newCards = new List<ICard>(Cards);
 
             newCards.Add(card);
 
@@ -52,7 +52,7 @@ namespace HSData
         /// </summary>
         /// <param name="drawn">This variable will contain the card that was drawn</param>
         /// <returns>A new deck state excluding the drawn card</returns>
-        public DeckState DrawRandom(out Card drawn)
+        public IDeckState DrawRandom(out ICard drawn)
         {
             if (!Cards.Any())
             {
@@ -63,7 +63,7 @@ namespace HSData
 
             drawn = Cards[randomIndex];
 
-            List<Card> newCards = new List<Card>(Cards);
+            List<ICard> newCards = new List<ICard>(Cards);
 
             newCards.RemoveAt(randomIndex);
 

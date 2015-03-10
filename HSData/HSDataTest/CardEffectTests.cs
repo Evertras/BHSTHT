@@ -77,7 +77,7 @@ namespace HSDataTest
 
             DeckState simpleDeck = new DeckState(new List<Card> { someCard });
 
-            BoardState board =
+            IBoardState board =
                 new BoardState(
                     new PlayerState(
                         new HeroState(heroHealth, heroHealth, heroHealth),
