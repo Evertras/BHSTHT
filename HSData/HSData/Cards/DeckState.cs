@@ -45,9 +45,9 @@ namespace HSData
         }
 
         /// <summary>
-        /// Draws a card at random from the deck, returning the deck with that card removed from it
+        /// Draws a card at random from the deck, returning an updated deck state with that card removed from it
         /// </summary>
-        /// <param name="drawn">The card that was drawn</param>
+        /// <param name="drawn">This variable will contain the card that was drawn</param>
         /// <returns>A new deck state excluding the drawn card</returns>
         public DeckState DrawRandom(out Card drawn)
         {
