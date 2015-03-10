@@ -123,5 +123,47 @@ namespace HSDataTest
             Assert.AreEqual(0, board.CurrentState.PlayerTwo.Hero.CurrentHealth);
             Assert.AreEqual(1, board.CurrentState.PlayerOne.Hero.CurrentHealth);
         }
+
+        [TestMethod]
+        public void HealingWorksAsExpected()
+        {
+            const int amountToHeal = 5;
+            int i;
+            ICard simpleDamageCard = new Card("Heals", 1, 1, new List<ICardEffect> { new CardEffectHealActiveHero(amountToHeal) });
+            List<ICard> repeatedCard = new List<ICard>();
+
+            for (i = 0; i < initialHP + 10; ++i)
+            {
+                repeatedCard.Add(simpleDamageCard);
+            }
+
+            IDeckState simpleDeck = new DeckState(repeatedCard);
+
+            var board =
+                new Board(
+                    new PlayerState(
+                        "P1",
+                        new HeroState(initialHP, initialHP, initialHP - amountToHeal * 2),
+                        ManaCrystalState.StartingValue,
+                        simpleDeck,
+                        HandState.EmptyHand),
+
+                    new PlayerState(
+                        "P2",
+                        new HeroState(initialHP, initialHP, initialHP),
+                        ManaCrystalState.StartingValue,
+                        simpleDeck,
+                        HandState.EmptyHand));
+
+            Assert.AreEqual(BoardState.PlayerTurn.PlayerOne, board.CurrentState.ActivePlayer);
+            Assert.AreEqual(1, board.CurrentState.PlayerOne.ManaCrystals.Maximum);
+            Assert.AreEqual(0, board.CurrentState.PlayerTwo.ManaCrystals.Maximum);
+
+            Assert.AreEqual(initialHP - (amountToHeal * 2), board.CurrentState.ActivePlayerState.Hero.CurrentHealth);
+
+            board.PlayCard(board.CurrentState.ActivePlayerState.Hand.Cards.First());
+
+            Assert.AreEqual(initialHP - amountToHeal, board.CurrentState.ActivePlayerState.Hero.CurrentHealth);
+        }
     }
 }

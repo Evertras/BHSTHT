@@ -87,7 +87,7 @@ namespace HSDataTest
                         HandState.EmptyHand),
                     new PlayerState(
                         "P2",
-                        new HeroState(heroHealth, heroHealth, heroHealth).Damage(damageToHeal) as HeroState,
+                        new HeroState(heroHealth, heroHealth, heroHealth).Damage(damageToHeal * 2) as HeroState,
                         ManaCrystalState.StartingValue,
                         DeckState.EmptyDeck,
                         HandState.EmptyHand),
@@ -101,7 +101,7 @@ namespace HSDataTest
 
             var alteredState = instance.Apply(board);
 
-            Assert.AreEqual(heroHealth, alteredState.PlayerTwo.Hero.CurrentHealth);
+            Assert.AreEqual(heroHealth - damageToHeal, alteredState.PlayerTwo.Hero.CurrentHealth);
         }
 
         [TestMethod]

@@ -49,6 +49,8 @@ namespace HSRepository
             cards.Add(cardRepository.GetByID(7));
             cards.Add(cardRepository.GetByID(7));
 
+            cards.Add(cardRepository.GetByID(8));
+
             return new DeckState(cards);
         }
     }

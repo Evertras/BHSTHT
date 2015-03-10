@@ -59,11 +59,11 @@ namespace HSDataTest
         public void HeroCanBeHealed()
         {
             const int healAmount = 5;
-            IBoardEntity hero = new HeroState(initialHP, initialHP, initialHP - healAmount);
+            IBoardEntity hero = new HeroState(initialHP, initialHP, initialHP - (healAmount + 1));
 
             hero = hero.Heal(healAmount);
 
-            Assert.AreEqual(initialHP, hero.CurrentHealth);
+            Assert.AreEqual(initialHP - 1, hero.CurrentHealth);
         }
 
         [TestMethod]
