@@ -77,5 +77,10 @@ namespace HSData
                 deck: newDeck,
                 hand: newHand);
         }
+
+        public PlayerState AlterHero(HeroState hero)
+        {
+            return new PlayerState(hero, ManaCrystals, Deck, Hand);
+        }
     }
 }

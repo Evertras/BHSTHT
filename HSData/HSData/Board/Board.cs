@@ -11,14 +11,34 @@ namespace HSData
     /// </summary>
     public class Board
     {
-        private readonly List<BoardState> boardStates = new List<BoardState>();
+        public struct BoardStateHistory
+        {
+            internal BoardStateHistory(IGameEvent gameEvent, BoardState boardState)
+            {
+                // Event can be null
+                Event = gameEvent;
+
+                // Board state cannot
+                if (boardState == null)
+                {
+                    throw new ArgumentNullException("Board state cannot be null");
+                }
+
+                BoardState = boardState;
+            }
+
+            public IGameEvent Event { get; }
+            public BoardState BoardState { get; }
+        }
+
+        private readonly List<BoardStateHistory> boardStates = new List<BoardStateHistory>();
 
         /// <summary>
         /// Creates an initial board state that can then be acted upon
         /// </summary>
         public Board(PlayerState playerOneInitialState, PlayerState playerTwoInitialState)
         {
-            boardStates.Add(new BoardState(playerOneInitialState, playerTwoInitialState));
+            boardStates.Add(new BoardStateHistory(null, new BoardState(playerOneInitialState, playerTwoInitialState, BoardState.PlayerTurn.PlayerOne)));
         }
 
         /// <summary>
@@ -28,8 +48,17 @@ namespace HSData
         {
             get
             {
-                return boardStates.Last();
+                return boardStates.Last().BoardState;
             }
+        }
+
+        /// <summary>
+        /// Applies an event's effects and updates the current state
+        /// </summary>
+        /// <param name="gameEvent"></param>
+        public void ApplyEvent(IGameEvent gameEvent)
+        {
+            boardStates.Add(new BoardStateHistory(gameEvent, gameEvent.Apply(CurrentState)));
         }
     }
 }

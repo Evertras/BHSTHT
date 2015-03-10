@@ -14,7 +14,7 @@ namespace HSDataTest
         {
             const int damageToDeal = 5;
 
-            BoardState board =
+            BoardState boardState = 
                 new BoardState(
                     new PlayerState(
                         new HeroState(heroHealth, heroHealth, heroHealth),
@@ -25,15 +25,16 @@ namespace HSDataTest
                         new HeroState(heroHealth, heroHealth, heroHealth),
                         ManaCrystalState.StartingValue,
                         DeckState.EmptyDeck,
-                        HandState.EmptyHand));
+                        HandState.EmptyHand),
+                    BoardState.PlayerTurn.PlayerOne);
 
             CardEffect effect = new CardEffectDamage(damageToDeal);
 
-            IBoardEntity target = board.PlayerTwo.Hero;
+            IBoardEntity target = boardState.PlayerTwo.Hero;
 
             var instance = effect.GenerateEvent(target);
 
-            var alteredState = instance.Apply(board);
+            var alteredState = instance.Apply(boardState);
 
             Assert.AreEqual(heroHealth - damageToDeal, alteredState.PlayerTwo.Hero.CurrentHealth);
         }
@@ -54,7 +55,8 @@ namespace HSDataTest
                         new HeroState(heroHealth, heroHealth, heroHealth).Damage(damageToHeal) as HeroState,
                         ManaCrystalState.StartingValue,
                         DeckState.EmptyDeck,
-                        HandState.EmptyHand));
+                        HandState.EmptyHand),
+                    BoardState.PlayerTurn.PlayerOne);
 
             CardEffect effect = new CardEffectHeal(damageToHeal);
 

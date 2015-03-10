@@ -11,6 +11,12 @@ namespace HSData
     /// </summary>
     public class BoardState
     {
+        public enum PlayerTurn
+        {
+            PlayerOne,
+            PlayerTwo
+        }
+
         /// <summary>
         /// The player one on the board.  Each player contains its own information of its deck, hero, minions, mana crystals, etc.
         /// </summary>
@@ -21,10 +27,12 @@ namespace HSData
         /// </summary>
         public PlayerState PlayerTwo { get; }
 
+        public PlayerTurn ActivePlayer { get; }
+
         /// <summary>
         /// Currently we only support a two player board, and each player must be unique
         /// </summary>
-        public BoardState(PlayerState playerOne, PlayerState playerTwo)
+        public BoardState(PlayerState playerOne, PlayerState playerTwo, PlayerTurn activePlayer)
         {
             if (playerOne == null || playerTwo == null)
             {
@@ -38,6 +46,26 @@ namespace HSData
 
             PlayerOne = playerOne;
             PlayerTwo = playerTwo;
+
+            ActivePlayer = activePlayer;
+        }
+
+        /// <summary>
+        /// Adjusts player one, returning a new state representing the alteration
+        /// </summary>
+        /// <param name="alteredPlayerOne">The new state of player one</param>
+        public BoardState AlterPlayerOne(PlayerState alteredPlayerOne)
+        {
+            return new BoardState(alteredPlayerOne, PlayerTwo, ActivePlayer);
+        }
+
+        /// <summary>
+        /// Adjusts player two, returning a new state representing the alteration
+        /// </summary>
+        /// <param name="alteredPlayerTwo">The new state of player two</param>
+        public BoardState AlterPlayerTwo(PlayerState alteredPlayerTwo)
+        {
+            return new BoardState(PlayerOne, alteredPlayerTwo, ActivePlayer);
         }
     }
 }

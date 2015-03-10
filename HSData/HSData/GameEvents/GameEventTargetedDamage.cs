@@ -33,15 +33,15 @@ namespace HSData
 
             if (Target == playerOne.Hero)
             {
-                playerOne = new PlayerState(playerOne.Hero.Damage(Effect.Amount) as HeroState, playerOne.ManaCrystals, playerOne.Deck, playerOne.Hand);
+                playerOne = playerOne.AlterHero(playerOne.Hero.Damage(Effect.Amount) as HeroState);
 
-                updatedState = new BoardState(playerOne, playerTwo);
+                updatedState = initialState.AlterPlayerOne(playerOne);
             }
             else if (Target == playerTwo.Hero)
             {
-                playerTwo = new PlayerState(playerTwo.Hero.Damage(Effect.Amount) as HeroState, playerTwo.ManaCrystals, playerTwo.Deck, playerTwo.Hand);
+                playerTwo = playerTwo.AlterHero(playerTwo.Hero.Damage(Effect.Amount) as HeroState);
 
-                updatedState = new BoardState(playerOne, playerTwo);
+                updatedState = initialState.AlterPlayerTwo(playerTwo);
             }
             else
             {
