@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HSData
 {
-    public abstract class CardEffect
+    public abstract class CardEffect : ICardEffect
     {
         public virtual bool RequiresTarget {  get { return false; } }
 

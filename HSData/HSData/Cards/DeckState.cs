@@ -9,10 +9,13 @@ namespace HSData
     /// <summary>
     /// Represents a deck state
     /// </summary>
-    public class DeckState
+    public class DeckState : IDeckState
     {
         static private readonly Random rng = new Random();
 
+        /// <summary>
+        /// Represents an empty deck state
+        /// </summary>
         public static readonly DeckState EmptyDeck = new DeckState(new List<Card>());
 
         public DeckState(IReadOnlyList<Card> cards)

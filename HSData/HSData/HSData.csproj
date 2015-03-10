@@ -41,9 +41,15 @@
   <ItemGroup>
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardState.cs" />
+    <Compile Include="Board\IBoard.cs" />
+    <Compile Include="Board\IBoardState.cs" />
     <Compile Include="CardEffects\CardEffectDamage.cs" />
     <Compile Include="CardEffects\CardEffectDraw.cs" />
     <Compile Include="CardEffects\CardEffectHeal.cs" />
+    <Compile Include="CardEffects\ICardEffect.cs" />
+    <Compile Include="Cards\ICard.cs" />
+    <Compile Include="Cards\IDeckState.cs" />
+    <Compile Include="Cards\IHandState.cs" />
     <Compile Include="GameEvents\GameEventDraw.cs" />
     <Compile Include="GameEvents\GameEventTargeted.cs" />
     <Compile Include="GameEvents\GameEventTargetedDamage.cs" />
@@ -57,6 +63,8 @@
     <Compile Include="GameEvents\GameEventTargetedHeal.cs" />
     <Compile Include="GameEvents\GameEventTurnEnd.cs" />
     <Compile Include="GameEvents\IGameEvent.cs" />
+    <Compile Include="Player\IManaCrystalState.cs" />
+    <Compile Include="Player\IPlayerState.cs" />
     <Compile Include="Player\ManaCrystalState.cs" />
     <Compile Include="Player\PlayerState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

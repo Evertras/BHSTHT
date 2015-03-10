@@ -11,7 +11,7 @@ namespace HSData
     /// <summary>
     /// Contains immutable information about mana crystal state (available, max, locked, etc.)
     /// </summary>
-    public class ManaCrystalState
+    public class ManaCrystalState : IManaCrystalState
     {
         public static readonly ManaCrystalState StartingValue = new ManaCrystalState(0, 0);
 

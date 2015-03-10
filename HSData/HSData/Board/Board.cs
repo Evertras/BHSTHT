@@ -9,7 +9,7 @@ namespace HSData
     /// <summary>
     /// Represents a board and keeps track of all past actions, producing a single current immutable state
     /// </summary>
-    public class Board
+    public class Board : IBoard
     {
         public struct BoardStateHistory
         {

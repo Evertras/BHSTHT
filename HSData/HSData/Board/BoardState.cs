@@ -9,7 +9,7 @@ namespace HSData
     /// <summary>
     /// Represents a single immutable board state
     /// </summary>
-    public class BoardState
+    public class BoardState : IBoardState
     {
         public enum PlayerTurn
         {

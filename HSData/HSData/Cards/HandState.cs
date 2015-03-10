@@ -9,7 +9,7 @@ namespace HSData
     /// <summary>
     /// Represent's a player's immutable hand state
     /// </summary>
-    public class HandState
+    public class HandState : IHandState
     {
         public static readonly HandState EmptyHand = new HandState(new List<Card>());
 

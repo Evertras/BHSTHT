@@ -9,7 +9,7 @@ namespace HSData
     /// <summary>
     /// A single immutable player state
     /// </summary>
-    public class PlayerState
+    public class PlayerState : IPlayerState
     {
         public PlayerState(HeroState hero,
                            ManaCrystalState manaCrystals,

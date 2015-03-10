@@ -9,13 +9,13 @@ namespace HSData
     /// <summary>
     /// Represents a card and all relevant information about that card, barring any modifiers
     /// </summary>
-    public class Card
+    public class Card : ICard
     {
         public static readonly IReadOnlyList<CardEffect> NoEffects = new List<CardEffect>();
 
         public int Cost { get; }
 
-        IReadOnlyList<CardEffect> Effects { get; }
+        public IReadOnlyList<CardEffect> Effects { get; }
 
         public Card(int cost, IReadOnlyList<CardEffect> effects)
         {
