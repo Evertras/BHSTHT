@@ -29,7 +29,7 @@ namespace HSRepository
 
         private Card GenerateDamageCard(int id, int cost, int damage)
         {
-            return new Card(id, cost, new List<CardEffect> { new CardEffectDamage(damage) });
+            return new Card(id, cost, new List<CardEffect> { new CardEffectDamageOpposingHero(damage) });
         }
 
         private Card GenerateHealCard(int id, int cost, int heal)
@@ -54,7 +54,7 @@ namespace HSRepository
             cards.Add(GenerateHealCard(6, 1, 1));
 
             // g 7
-            cards.Add(new Card(7, 1, new List<CardEffect> { new CardEffectDamage(1), new CardEffectDraw() }));
+            cards.Add(new Card(7, 1, new List<CardEffect> { new CardEffectDamageOpposingHero(1), new CardEffectDraw() }));
 
             // TODO:
             // h 8 to be added

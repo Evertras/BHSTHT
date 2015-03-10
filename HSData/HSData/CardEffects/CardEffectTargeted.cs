@@ -12,7 +12,7 @@ namespace HSData
 
         public override IGameEvent GenerateEvent()
         {
-            throw new NotImplementedException("This effect requires a target");
+            throw new InvalidOperationException("This effect requires a target");
         }
     }
 }

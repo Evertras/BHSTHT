@@ -44,12 +44,15 @@
     <Compile Include="Board\IBoard.cs" />
     <Compile Include="Board\IBoardState.cs" />
     <Compile Include="CardEffects\CardEffectDamage.cs" />
+    <Compile Include="CardEffects\CardEffectDamageOpposingHero.cs" />
     <Compile Include="CardEffects\CardEffectDraw.cs" />
     <Compile Include="CardEffects\CardEffectHeal.cs" />
+    <Compile Include="CardEffects\CardEffectUntargeted.cs" />
     <Compile Include="CardEffects\ICardEffect.cs" />
     <Compile Include="Cards\ICard.cs" />
     <Compile Include="Cards\IDeckState.cs" />
     <Compile Include="Cards\IHandState.cs" />
+    <Compile Include="GameEvents\GameEventDamageOpposingHero.cs" />
     <Compile Include="GameEvents\GameEventDraw.cs" />
     <Compile Include="GameEvents\GameEventTargeted.cs" />
     <Compile Include="GameEvents\GameEventTargetedDamage.cs" />

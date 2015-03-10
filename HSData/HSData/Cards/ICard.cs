@@ -21,5 +21,16 @@ namespace HSData
         /// The effects of the card when it's played
         /// </summary>
         IReadOnlyList<ICardEffect> Effects { get; }
+
+        /// <summary>
+        /// Whether or not the card requires a target
+        /// </summary>
+        bool RequiresTarget { get; }
+
+        /// <summary>
+        /// Generates all applicable events from the card given a target, if required
+        /// </summary>
+        /// <param name="target">The target, if required</param>
+        IReadOnlyList<IGameEvent> GenerateEvents(IBoardEntity target = null);
     }
 }
