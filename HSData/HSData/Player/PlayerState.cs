@@ -119,5 +119,10 @@ namespace HSData
                 return AlterHero(Hero.Damage(1));
             }
         }
+
+        public IPlayerState AlterHand(IHandState hand)
+        {
+            return new PlayerState(BattleTag, Hero, ManaCrystals, Deck, hand);
+        }
     }
 }

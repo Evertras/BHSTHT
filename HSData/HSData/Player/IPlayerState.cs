@@ -42,6 +42,12 @@
         IPlayerState AlterHero(IBoardEntity hero);
 
         /// <summary>
+        /// Alters the player's hand, returning a new player state representing the updated hand state
+        /// </summary>
+        /// <param name="hand">The hand state to update to</param>
+        IPlayerState AlterHand(IHandState hand);
+
+        /// <summary>
         /// Begins the turn, applying all applicable events and returning the updated state
         /// </summary>
         IPlayerState BeginTurn();

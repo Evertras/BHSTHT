@@ -84,6 +84,23 @@ namespace HSConsole
             }
         }
 
+        private void DrawMessages()
+        {
+            for (int i = 0; i < Board.History.Count; ++i)
+            {
+                CursorTop = 4 + i;
+                CursorLeft = WindowWidth / 2;
+                ForegroundColor = ConsoleColor.Gray;
+
+                var info = Board.History[i];
+
+                if (i >= 1)
+                {
+                    Write("{0} - {1}", Board.History[i-1].BoardState.ActivePlayerState.BattleTag, info.Event.Describe(info.BoardState, Localizer));
+                }
+            }
+        }
+
         public void DisplayBoard()
         {
             WindowHeight = 40;
@@ -102,6 +119,9 @@ namespace HSConsole
             // Draw active player on bottom
             CursorTop = WindowHeight - 3;
             DrawPlayer(activePlayer);
+
+            // Display the game history
+            DrawMessages();
 
             // Show the active player's hand
             DrawHand(activePlayer);

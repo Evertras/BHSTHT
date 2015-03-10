@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardState.cs" />
+    <Compile Include="Board\BoardStateHistory.cs" />
     <Compile Include="Board\IBoard.cs" />
     <Compile Include="Board\IBoardState.cs" />
     <Compile Include="CardEffects\CardEffectDamage.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="Cards\ICard.cs" />
     <Compile Include="Cards\IDeckState.cs" />
     <Compile Include="Cards\IHandState.cs" />
+    <Compile Include="GameEvents\GameEventCardPlayed.cs" />
     <Compile Include="GameEvents\GameEventDamageOpposingHero.cs" />
     <Compile Include="GameEvents\GameEventDraw.cs" />
     <Compile Include="GameEvents\GameEventTargeted.cs" />

@@ -13,26 +13,6 @@ namespace HSData
     {
         public event Action<IBoard, EventArgs> StateChanged;
 
-        public struct BoardStateHistory
-        {
-            internal BoardStateHistory(IGameEvent gameEvent, IBoardState boardState)
-            {
-                // Event can be null
-                Event = gameEvent;
-
-                // Board state cannot
-                if (boardState == null)
-                {
-                    throw new ArgumentNullException("Board state cannot be null");
-                }
-
-                BoardState = boardState;
-            }
-
-            public IGameEvent Event { get; }
-            public IBoardState BoardState { get; }
-        }
-
         private readonly List<BoardStateHistory> boardStates = new List<BoardStateHistory>();
 
 
@@ -59,6 +39,15 @@ namespace HSData
             }
         }
 
+        public IReadOnlyList<BoardStateHistory> History
+        {
+            get
+            {
+                return boardStates;
+            }
+        }
+
+
         /// <summary>
         /// Applies an event's effects and updates the current state
         /// </summary>
@@ -68,6 +57,36 @@ namespace HSData
             boardStates.Add(new BoardStateHistory(gameEvent, gameEvent.Apply(CurrentState)));
 
             StateChanged?.Invoke(this, new EventArgs());
+        }
+
+        public void PlayCard(ICard card, IBoardEntity target = null)
+        {
+            var activeHand = CurrentState.ActivePlayerState.Hand;
+
+            if (!activeHand.Cards.Contains(card))
+            {
+                throw new InvalidOperationException("Active player is not holding the card that's being played");
+            }
+
+            var updatedActivePlayerState = CurrentState.ActivePlayerState.AlterHand(activeHand.RemoveCard(card));
+
+            boardStates.Add(new BoardStateHistory(new GameEventCardPlayed(card), CurrentState.AlterActivePlayer(updatedActivePlayerState)));
+
+            foreach (var effect in card.Effects)
+            {
+                IGameEvent gameEvent;
+
+                if (effect.RequiresTarget)
+                {
+                    gameEvent = effect.GenerateEvent(target);
+                }
+                else
+                {
+                    gameEvent = effect.GenerateEvent();
+                }
+
+                ApplyEvent(gameEvent);
+            }
         }
     }
 }
