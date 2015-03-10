@@ -63,6 +63,11 @@ namespace HSData
         public IHandState Hand { get; }
 
         /// <summary>
+        /// Whether or not the player's hero is alive
+        /// </summary>
+        public bool IsAlive { get { return Hero.CurrentHealth > 0; } }
+
+        /// <summary>
         /// Starts a new turn for the player
         /// </summary>
         public IPlayerState BeginTurn()

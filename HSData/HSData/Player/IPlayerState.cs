@@ -21,6 +21,11 @@
         IBoardEntity Hero { get; }
 
         /// <summary>
+        /// Returns true if the player's hero is still alive
+        /// </summary>
+        bool IsAlive { get; }
+
+        /// <summary>
         /// The player's mana crystals
         /// </summary>
         IManaCrystalState ManaCrystals { get; }

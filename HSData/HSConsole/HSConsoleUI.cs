@@ -20,20 +20,30 @@ namespace HSConsole
             Board.StateChanged += b => DisplayBoard();
         }
 
-        private void DrawPlayerLine(IPlayerState playerState)
+        private void DrawPlayer(IPlayerState playerState)
         {
             ForegroundColor = ConsoleColor.Blue;
 
             CursorLeft = 0;
             Write("Player name");
 
-            CursorLeft = BufferWidth / 2 - 2;
+            CursorLeft = BufferWidth / 2 - 1;
             ForegroundColor = ConsoleColor.Cyan;
             Write($"{playerState.ManaCrystals.Current}/{playerState.ManaCrystals.Maximum}");
 
-            CursorLeft = BufferWidth - 5;
+            CursorLeft = BufferWidth - 6;
             ForegroundColor = ConsoleColor.Red;
             Write($"{playerState.Hero.CurrentHealth}/{playerState.Hero.MaxHealth}");
+
+            CursorTop += 1;
+            CursorLeft = 4;
+
+            ForegroundColor = ConsoleColor.Yellow;
+
+            for (int i = 0; i < playerState.Hand.Cards.Count; ++i)
+            {
+                Write("[] ");
+            }
         }
 
         public void DisplayBoard()
@@ -49,11 +59,11 @@ namespace HSConsole
             Clear();
 
             // Draw inactive player on top
-            DrawPlayerLine(inactivePlayer);
+            DrawPlayer(inactivePlayer);
 
             // Draw active player on bottom
-            CursorTop = WindowHeight - 2;
-            DrawPlayerLine(activePlayer);
+            CursorTop = WindowHeight - 3;
+            DrawPlayer(activePlayer);
 
             ForegroundColor = originalForegroundColor;
         }

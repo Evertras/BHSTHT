@@ -35,13 +35,14 @@ namespace HSConsole
 
             HSConsoleUI ui = new HSConsoleUI(board);
 
-            ui.DisplayBoard();
+            while (board.CurrentState.PlayerOne.IsAlive && board.CurrentState.PlayerTwo.IsAlive)
+            {
+                ui.DisplayBoard();
 
-            Console.ReadKey(true);
+                Console.ReadKey(true);
 
-            board.ApplyEvent(new GameEventTurnEnd());
-
-            Console.ReadKey(true);
+                board.ApplyEvent(new GameEventTurnEnd());
+            }
         }
     }
 }

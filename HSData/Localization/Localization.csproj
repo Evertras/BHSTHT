@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ILocalizer.cs" />
     <Compile Include="LocalizedString.cs" />
+    <Compile Include="NOPLocalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
