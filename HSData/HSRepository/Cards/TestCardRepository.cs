@@ -56,8 +56,13 @@ namespace HSRepository
             // g 7
             cards.Add(new Card("G", 7, 1, new List<CardEffect> { new CardEffectDamageOpposingHero(1), new CardEffectActivePlayerDraws() }));
 
-            // TODO:
-            // h 8 to be added
+            // h 8
+            cards.Add(new Card("Legendary", 8, 5, new List<ICardEffect>
+            {
+                new CardEffectDamage(4),
+                new CardEffectActiveHeroRestoreMana(1),
+                new CardEffectMessage("YouWillNeverDefeat")
+            }));
         }
 
         public ICard GetByID(int id)

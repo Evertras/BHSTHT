@@ -8,9 +8,16 @@ namespace HSData
 {
     public class CardEffectMessage : CardEffectUntargeted
     {
+        public CardEffectMessage(string messageKey)
+        {
+            MessageKey = messageKey;
+        }
+
+        public string MessageKey { get; }
+
         public override IGameEvent GenerateEvent()
         {
-            throw new NotImplementedException();
+            return new GameEventMessage(MessageKey);
         }
     }
 }
