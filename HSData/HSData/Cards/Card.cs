@@ -13,11 +13,13 @@ namespace HSData
     {
         public static readonly IReadOnlyList<ICardEffect> NoEffects = new List<ICardEffect>();
 
+        public int ID { get; }
+
         public int Cost { get; }
 
         public IReadOnlyList<ICardEffect> Effects { get; }
 
-        public Card(int cost, IReadOnlyList<ICardEffect> effects)
+        public Card(int id, int cost, IReadOnlyList<ICardEffect> effects)
         {
             if (cost < 0)
             {
@@ -29,6 +31,9 @@ namespace HSData
                 throw new ArgumentNullException("Effects cannot be null");
             }
 
+            // ID can be anything, for the moment
+
+            ID = id;
             Cost = cost;
             Effects = effects;
         }

@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICardRepository.cs" />
+    <Compile Include="Cards\ICardRepository.cs" />
+    <Compile Include="Decks\IDeckRepository.cs" />
+    <Compile Include="Decks\TestDeckRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestCardRepository.cs" />
+    <Compile Include="Cards\TestCardRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HSData\HSData.csproj">

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace HSData.GameEvents
 {
-    public class GameEventTurnEnd
+    public class GameEventTurnEnd : IGameEvent
     {
+        public IBoardState Apply(IBoardState initialState)
+        {
+            return initialState.EndTurn();
+        }
     }
 }

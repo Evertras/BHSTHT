@@ -22,14 +22,14 @@ namespace HSRepository
             }
         }
 
-        private Card GenerateDamageCard(int cost, int damage)
+        private Card GenerateDamageCard(int id, int cost, int damage)
         {
-            return new Card(cost, new List<CardEffect> { new CardEffectDamage(damage) });
+            return new Card(id, cost, new List<CardEffect> { new CardEffectDamage(damage) });
         }
 
-        private Card GenerateHealCard(int cost, int heal)
+        private Card GenerateHealCard(int id, int cost, int heal)
         {
-            return new Card(cost, new List<CardEffect> { new CardEffectHeal(heal) });
+            return new Card(id, cost, new List<CardEffect> { new CardEffectHeal(heal) });
         }
 
         /// <summary>
@@ -37,17 +37,20 @@ namespace HSRepository
         /// </summary>
         public void Load()
         {
-            // a through e
+            // a through e 1-5
             for (int i = 0; i < 5; ++i)
             {
-                cards.Add(GenerateDamageCard(i, i));
+                cards.Add(GenerateDamageCard(i + 1, i, i));
             }
 
-            // f
-            cards.Add(GenerateHealCard(1, 1));
+            // f 6
+            cards.Add(GenerateHealCard(6, 1, 1));
 
-            // g
-            cards.Add(new Card(1, new List<CardEffect> { new CardEffectDamage(1), new CardEffectDraw() }));
+            // g 7
+            cards.Add(new Card(7, 1, new List<CardEffect> { new CardEffectDamage(1), new CardEffectDraw() }));
+
+            // TODO:
+            // h 8 to be added
         }
     }
 }

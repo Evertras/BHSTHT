@@ -73,7 +73,7 @@ namespace HSDataTest
         [TestMethod]
         public void BothPlayersCanDrawCard()
         {
-            Card someCard = new Card(1, Card.NoEffects);
+            Card someCard = new Card(1, 1, Card.NoEffects);
 
             DeckState simpleDeck = new DeckState(new List<Card> { someCard });
 

@@ -8,6 +8,11 @@ namespace HSData
     public interface ICard
     {
         /// <summary>
+        /// The internal ID of the card
+        /// </summary>
+        int ID { get; }
+
+        /// <summary>
         /// The cost of the card
         /// </summary>
         int Cost { get; }

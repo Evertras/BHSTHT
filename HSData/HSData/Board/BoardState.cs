@@ -67,5 +67,20 @@ namespace HSData
         {
             return new BoardState(PlayerOne, alteredPlayerTwo, ActivePlayer);
         }
+
+        /// <summary>
+        /// Ends the current turn and begins the turn for the other player
+        /// </summary>
+        public IBoardState EndTurn()
+        {
+            if (ActivePlayer == PlayerTurn.PlayerOne)
+            {
+                return new BoardState(PlayerOne, PlayerTwo.BeginTurn(), PlayerTurn.PlayerTwo);
+            }
+            else
+            {
+                return new BoardState(PlayerOne.BeginTurn(), PlayerTwo, PlayerTurn.PlayerOne);
+            }
+        }
     }
 }
