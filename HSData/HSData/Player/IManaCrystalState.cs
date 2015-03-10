@@ -25,5 +25,11 @@
         /// </summary>
         /// <param name="amount">How many mana crystals to use</param>
         IManaCrystalState Use(int amount);
+
+        /// <summary>
+        /// Restores a given number of mana crystals, up to the maximum
+        /// </summary>
+        /// <param name="amount">How many mana crystals to restore</param>
+        IManaCrystalState Restore(int amount);
     }
 }

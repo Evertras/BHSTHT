@@ -60,5 +60,15 @@ namespace HSData
 
             return new ManaCrystalState(Current - amount, Maximum);
         }
+
+        public IManaCrystalState Restore(int amount)
+        {
+            if (amount < 1)
+            {
+                throw new ArgumentOutOfRangeException("Amount must be a positive integer");
+            }
+
+            return new ManaCrystalState(Min(Current + amount, Maximum), Maximum);
+        }
     }
 }

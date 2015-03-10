@@ -146,5 +146,38 @@ namespace HSDataTest
 
             Assert.AreEqual(1, board.PlayerTwo.Hand.Cards.Count);
         }
+
+        [TestMethod]
+        public void CanRestoreHeroMana()
+        {
+            ICardEffect effect = new CardEffectActiveHeroRestoreMana(1);
+
+            IBoardState board =
+                new BoardState(
+                    new PlayerState(
+                        "P1",
+                        new HeroState(heroHealth, heroHealth, heroHealth),
+                        ManaCrystalState.StartingValue.BeginTurn(),
+                        DeckState.EmptyDeck,
+                        HandState.EmptyHand),
+                    new PlayerState(
+                        "P2",
+                        new HeroState(heroHealth, heroHealth, heroHealth),
+                        ManaCrystalState.StartingValue,
+                        DeckState.EmptyDeck,
+                        HandState.EmptyHand),
+                    BoardState.PlayerTurn.PlayerOne
+                    );
+
+            Assert.AreEqual(1, board.ActivePlayerState.ManaCrystals.Current);
+
+            board = board.AlterActivePlayer(board.ActivePlayerState.UseMana(1));
+
+            Assert.AreEqual(0, board.ActivePlayerState.ManaCrystals.Current);
+
+            board = effect.GenerateEvent().Apply(board);
+
+            Assert.AreEqual(1, board.ActivePlayerState.ManaCrystals.Current);
+        }
     }
 }

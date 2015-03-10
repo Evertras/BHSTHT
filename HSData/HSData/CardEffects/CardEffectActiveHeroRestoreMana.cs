@@ -17,7 +17,7 @@ namespace HSData
 
         public override IGameEvent GenerateEvent()
         {
-            throw new NotImplementedException();
+            return new GameEventActiveHeroRestoresMana(Amount);
         }
     }
 }

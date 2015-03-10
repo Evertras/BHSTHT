@@ -18,9 +18,9 @@ namespace HSData
 
         public IBoardState Apply(IBoardState initialState)
         {
-            var alteredHero = initialState.ActivePlayerState.Hero.Heal(Amount);
+            var alteredMana = initialState.ActivePlayerState.ManaCrystals.Restore(Amount);
 
-            return initialState.AlterActivePlayer(initialState.ActivePlayerState.AlterHero(alteredHero));
+            return initialState.AlterActivePlayer(initialState.ActivePlayerState.RestoreMana(Amount));
         }
 
         public LocalizedString Describe(IBoardState boardState, ILocalizer localizer)

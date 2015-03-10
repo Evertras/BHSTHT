@@ -54,6 +54,12 @@
         IPlayerState UseMana(int amount);
 
         /// <summary>
+        /// Restores a given amount of mana, up to the maximum number of crystals
+        /// </summary>
+        /// <param name="amount">How many crystals to restore</param>
+        IPlayerState RestoreMana(int amount);
+
+        /// <summary>
         /// Begins the turn, applying all applicable events and returning the updated state
         /// </summary>
         IPlayerState BeginTurn();
