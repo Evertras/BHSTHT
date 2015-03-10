@@ -16,5 +16,7 @@ namespace Localization
         /// </summary>
         /// <param name="key">The key to translate to the localizer's language</param>
         LocalizedString Localize(string key);
+
+        GeneratedLocalizedString LocalizeFormat(string formatKey, params object[] objs);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Localization;
 
 namespace HSData
 {
@@ -49,6 +50,11 @@ namespace HSData
             }
 
             return updatedState;
+        }
+
+        public LocalizedString Describe(IBoardState boardState, ILocalizer localizer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

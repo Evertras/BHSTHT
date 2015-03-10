@@ -15,5 +15,10 @@ namespace Localization
         {
             return new LocalizedString(key, key);
         }
+
+        public GeneratedLocalizedString LocalizeFormat(string formatKey, params object[] objs)
+        {
+            return new GeneratedLocalizedString("Formatted: " + formatKey);
+        }
     }
 }

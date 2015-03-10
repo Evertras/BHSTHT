@@ -29,6 +29,23 @@ namespace HSData
 
         public PlayerTurn ActivePlayer { get; }
 
+        public IPlayerState ActivePlayerState
+        {
+            get
+            {
+                return ActivePlayer == PlayerTurn.PlayerOne ? PlayerOne : PlayerTwo;
+            }
+        }
+
+        public IPlayerState InactivePlayerState
+        {
+            get
+            {
+                return ActivePlayer == PlayerTurn.PlayerOne ? PlayerTwo : PlayerOne;
+            }
+        }
+
+
         /// <summary>
         /// Currently we only support a two player board
         /// </summary>
@@ -76,6 +93,16 @@ namespace HSData
             {
                 return new BoardState(PlayerOne.BeginTurn(), PlayerTwo, PlayerTurn.PlayerOne);
             }
+        }
+
+        public IBoardState AlterActivePlayer(IPlayerState alteredActivePlayer)
+        {
+            return ActivePlayer == PlayerTurn.PlayerOne ? AlterPlayerOne(alteredActivePlayer) : AlterPlayerTwo(alteredActivePlayer);
+        }
+
+        public IBoardState AlterInactivePlayer(IPlayerState alteredInactivePlayer)
+        {
+            return ActivePlayer == PlayerTurn.PlayerOne ? AlterPlayerTwo(alteredInactivePlayer) : AlterPlayerOne(alteredInactivePlayer);
         }
     }
 }

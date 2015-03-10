@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HSData
 {
-    public class CardEffectDraw : CardEffectTargeted
+    public class CardEffectActivePlayerDraws : CardEffectUntargeted
     {
-        public override IGameEvent GenerateEvent(IBoardEntity target)
+        public override IGameEvent GenerateEvent()
         {
-            return new GameEventDraw(target);
+            return new GameEventActivePlayerDraws();
         }
     }
 }

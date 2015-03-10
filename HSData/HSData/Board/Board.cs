@@ -11,7 +11,7 @@ namespace HSData
     /// </summary>
     public class Board : IBoard
     {
-        public event Action<IBoard> StateChanged;
+        public event Action<IBoard, EventArgs> StateChanged;
 
         public struct BoardStateHistory
         {
@@ -67,7 +67,7 @@ namespace HSData
         {
             boardStates.Add(new BoardStateHistory(gameEvent, gameEvent.Apply(CurrentState)));
 
-            StateChanged?.Invoke(this);
+            StateChanged?.Invoke(this, new EventArgs());
         }
     }
 }

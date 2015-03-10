@@ -3,33 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Localization;
 
 namespace HSData
 {
-    public class GameEventDraw : GameEventTargeted, IGameEvent
+    public class GameEventActivePlayerDraws : IGameEvent
     {
-        public GameEventDraw(IBoardEntity target) : base(target)
+        public GameEventActivePlayerDraws()
         {
-            if (target as HeroState == null)
-            {
-                throw new ArgumentException("Target must be a hero");
-            }
         }
 
         public IBoardState Apply(IBoardState initialState)
         {
-            if (Target == initialState.PlayerOne.Hero)
-            {
-                return initialState.AlterPlayerOne(initialState.PlayerOne.Draw());
-            }
-            else if (Target == initialState.PlayerTwo.Hero)
-            {
-                return initialState.AlterPlayerTwo(initialState.PlayerTwo.Draw());
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("Could not find target hero");
-            }
+            return initialState.AlterActivePlayer(initialState.ActivePlayerState.Draw());
+        }
+
+        public LocalizedString Describe(IBoardState boardState, ILocalizer localizer)
+        {
+            string activeBattleTag = boardState.ActivePlayerState.BattleTag;
+
+            return new LocalizedString("sdfkj", $"{activeBattleTag} {localizer.Localize("DrawCard")}");
         }
     }
 }

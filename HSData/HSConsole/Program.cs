@@ -1,5 +1,6 @@
 ﻿using HSData;
 using HSRepository;
+using Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,13 +36,13 @@ namespace HSConsole
 
             Board board = new Board(playerOneInitialState, playerTwoInitialState);
 
-            HSConsoleUI ui = new HSConsoleUI(board);
+            HSConsoleUI ui = new HSConsoleUI(board, new NOPLocalizer());
 
             while (board.CurrentState.PlayerOne.IsAlive && board.CurrentState.PlayerTwo.IsAlive)
             {
                 ui.DisplayBoard();
 
-                Console.ReadKey(true);
+                var keyInput = Console.ReadKey(true);
 
                 board.ApplyEvent(new GameEventTurnEnd());
             }

@@ -11,6 +11,6 @@ namespace HSData
 
         void ApplyEvent(IGameEvent gameEvent);
 
-        event Action<IBoard> StateChanged;
+        event Action<IBoard, EventArgs> StateChanged;
     }
 }

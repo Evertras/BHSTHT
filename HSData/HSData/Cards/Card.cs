@@ -15,6 +15,11 @@ namespace HSData
 
         public int ID { get; }
 
+        /// <summary>
+        /// The name key that will be localized using ILocalizer
+        /// </summary>
+        public string NameKey { get; }
+
         public int Cost { get; }
 
         public IReadOnlyList<ICardEffect> Effects { get; }
@@ -27,7 +32,7 @@ namespace HSData
             }
         }
 
-        public Card(int id, int cost, IReadOnlyList<ICardEffect> effects)
+        public Card(string nameKey, int id, int cost, IReadOnlyList<ICardEffect> effects)
         {
             if (cost < 0)
             {
@@ -39,11 +44,17 @@ namespace HSData
                 throw new ArgumentNullException("Effects cannot be null");
             }
 
+            if (string.IsNullOrEmpty(nameKey?.Trim()))
+            {
+                throw new ArgumentNullException("Name key cannot be empty or blank");
+            }
+
             // ID can be anything, for the moment
 
             ID = id;
             Cost = cost;
             Effects = effects;
+            NameKey = nameKey.Trim();
         }
 
         public IReadOnlyList<IGameEvent> GenerateEvents(IBoardEntity target = null)

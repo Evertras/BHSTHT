@@ -107,7 +107,7 @@ namespace HSDataTest
         [TestMethod]
         public void BothPlayersCanDrawCard()
         {
-            Card someCard = new Card(1, 1, Card.NoEffects);
+            Card someCard = new Card("X", 1, 1, Card.NoEffects);
 
             DeckState simpleDeck = new DeckState(new List<Card> { someCard });
 
@@ -128,11 +128,9 @@ namespace HSDataTest
                     BoardState.PlayerTurn.PlayerOne
                     );
 
-            CardEffect drawEffect = new CardEffectDraw();
+            CardEffect drawEffect = new CardEffectActivePlayerDraws();
 
-            IBoardEntity target = board.PlayerOne.Hero;
-
-            var instance = drawEffect.GenerateEvent(target);
+            var instance = drawEffect.GenerateEvent();
 
             Assert.AreEqual(0, board.PlayerOne.Hand.Cards.Count);
 
@@ -142,8 +140,8 @@ namespace HSDataTest
 
             Assert.AreEqual(0, board.PlayerTwo.Hand.Cards.Count);
 
-            target = board.PlayerTwo.Hero;
-            instance = drawEffect.GenerateEvent(target);
+            board = new GameEventTurnEnd().Apply(board);
+            instance = drawEffect.GenerateEvent();
             board = instance.Apply(board);
 
             Assert.AreEqual(1, board.PlayerTwo.Hand.Cards.Count);

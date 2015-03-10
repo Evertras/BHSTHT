@@ -30,5 +30,10 @@ namespace Localization
         public string Key { get; }
 
         public string Localized { get; }
+
+        public override string ToString()
+        {
+            return Localized;
+        }
     }
 }

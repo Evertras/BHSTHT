@@ -1,4 +1,5 @@
 ﻿using HSData;
+using Localization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,28 @@ namespace HSConsole
 {
     public class HSConsoleUI
     {
-        public Board Board { get; }
+        public IBoard Board { get; }
+        public ILocalizer Localizer { get; }
 
-        public HSConsoleUI(Board board)
+        private readonly List<LocalizedString> messages = new List<LocalizedString>();
+
+        public HSConsoleUI(IBoard board, ILocalizer localizer)
         {
+            if (board == null)
+            {
+                throw new ArgumentNullException("Board cannot be null");
+            }
+
+            if (localizer == null)
+            {
+                throw new ArgumentNullException("Localizer cannot be null");
+            }
+
             Board = board;
 
-            Board.StateChanged += b => DisplayBoard();
+            Board.StateChanged += (b, eventArgs) => DisplayBoard();
+
+            Localizer = localizer;
         }
 
         private void DrawPlayer(IPlayerState playerState)
@@ -25,7 +41,7 @@ namespace HSConsole
             ForegroundColor = ConsoleColor.Blue;
 
             CursorLeft = 0;
-            Write("Player name");
+            Write(playerState.BattleTag);
 
             CursorLeft = BufferWidth / 2 - 1;
             ForegroundColor = ConsoleColor.Cyan;
@@ -48,16 +64,23 @@ namespace HSConsole
 
         private void DrawHand(IPlayerState playerState)
         {
-            ForegroundColor = ConsoleColor.White;
-
             for (int i = 0; i < playerState.Hand.Cards.Count; ++i)
             {
                 var card = playerState.Hand.Cards[i];
 
-                CursorTop = 4 + i;
+                CursorTop = WindowHeight - (3 + playerState.Hand.Cards.Count) + i;
                 CursorLeft = 6;
 
-                Write($"{i + 1}) ({card.Cost})");
+                if (card.Cost <= playerState.ManaCrystals.Current)
+                {
+                    ForegroundColor = ConsoleColor.Green;
+                }
+                else
+                {
+                    ForegroundColor = ConsoleColor.DarkRed;
+                }
+
+                Write($"{(i + 1) % 10}) {Localizer.Localize(card.NameKey)} ({card.Cost})");
             }
         }
 

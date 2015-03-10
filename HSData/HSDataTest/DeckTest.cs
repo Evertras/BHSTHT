@@ -11,7 +11,7 @@ namespace HSDataTest
         [TestMethod]
         public void CanAddCards()
         {
-            var sampleCard = new Card(1, 1, Card.NoEffects);
+            var sampleCard = new Card("X", 1, 1, Card.NoEffects);
             var cards = new List<Card>();
 
             IDeckState deck = DeckState.EmptyDeck;
@@ -27,7 +27,7 @@ namespace HSDataTest
         [TestMethod]
         public void CanDrawCards()
         {
-            var sampleCard = new Card(1, 1, Card.NoEffects);
+            var sampleCard = new Card("X", 1, 1, Card.NoEffects);
             var cards = new List<Card>();
 
             IDeckState deck = DeckState.EmptyDeck;
