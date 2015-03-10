@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace HSData
 {
-    public class GameEventTargetedDamage : GameEventTargeted, IGameEvent
+    public class GameEventTargetedHeal : GameEventTargeted, IGameEvent
     {
-        public GameEventTargetedDamage(CardEffectDamage damageEffect, IBoardEntity target) : base(target)
+        public GameEventTargetedHeal(CardEffectHeal effect, IBoardEntity target) : base(target)
         {
-            if (damageEffect == null)
+            if (effect == null)
             {
-                throw new ArgumentNullException("Damage effect cannot be null");
+                throw new ArgumentNullException("Effect cannot be null");
             }
 
-            Effect = damageEffect;
+            Effect = effect;
         }
 
-        CardEffectDamage Effect { get; }
+        public CardEffectHeal Effect { get; }
 
         public BoardState Apply(BoardState initialState)
         {
@@ -33,13 +33,13 @@ namespace HSData
 
             if (Target == playerOne.Hero)
             {
-                playerOne = new PlayerState(playerOne.Hero.Damage(Effect.Amount) as HeroState, playerOne.ManaCrystals, playerOne.Deck, playerOne.Hand);
+                playerOne = new PlayerState(playerOne.Hero.Heal(Effect.Amount) as HeroState, playerOne.ManaCrystals, playerOne.Deck, playerOne.Hand);
 
                 updatedState = new BoardState(playerOne, playerTwo);
             }
             else if (Target == playerTwo.Hero)
             {
-                playerTwo = new PlayerState(playerTwo.Hero.Damage(Effect.Amount) as HeroState, playerTwo.ManaCrystals, playerTwo.Deck, playerTwo.Hand);
+                playerTwo = new PlayerState(playerTwo.Hero.Heal(Effect.Amount) as HeroState, playerTwo.ManaCrystals, playerTwo.Deck, playerTwo.Hand);
 
                 updatedState = new BoardState(playerOne, playerTwo);
             }

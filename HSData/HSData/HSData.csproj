@@ -42,6 +42,8 @@
     <Compile Include="Board\Board.cs" />
     <Compile Include="Board\BoardState.cs" />
     <Compile Include="CardEffects\CardEffectDamage.cs" />
+    <Compile Include="CardEffects\CardEffectHeal.cs" />
+    <Compile Include="GameEvents\GameEventTargeted.cs" />
     <Compile Include="GameEvents\GameEventTargetedDamage.cs" />
     <Compile Include="CardEffects\CardEffectTargeted.cs" />
     <Compile Include="Cards\Card.cs" />
@@ -50,6 +52,7 @@
     <Compile Include="BoardEntities\IBoardEntity.cs" />
     <Compile Include="Cards\DeckState.cs" />
     <Compile Include="Cards\HandState.cs" />
+    <Compile Include="GameEvents\GameEventTargetedHeal.cs" />
     <Compile Include="GameEvents\IGameEvent.cs" />
     <Compile Include="Player\ManaCrystalState.cs" />
     <Compile Include="Player\PlayerState.cs" />
