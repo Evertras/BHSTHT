@@ -58,16 +58,19 @@ namespace HSDataTest
                         playerTwoDeck,
                         HandState.EmptyHand));
 
+            Assert.AreEqual(BoardState.PlayerTurn.PlayerOne, board.CurrentState.ActivePlayer);
             Assert.AreEqual(1, board.CurrentState.PlayerOne.ManaCrystals.Maximum);
             Assert.AreEqual(0, board.CurrentState.PlayerTwo.ManaCrystals.Maximum);
 
             board.ApplyEvent(new GameEventTurnEnd());
 
+            Assert.AreEqual(BoardState.PlayerTurn.PlayerTwo, board.CurrentState.ActivePlayer);
             Assert.AreEqual(1, board.CurrentState.PlayerOne.ManaCrystals.Maximum);
             Assert.AreEqual(1, board.CurrentState.PlayerTwo.ManaCrystals.Maximum);
 
             board.ApplyEvent(new GameEventTurnEnd());
 
+            Assert.AreEqual(BoardState.PlayerTurn.PlayerOne, board.CurrentState.ActivePlayer);
             Assert.AreEqual(2, board.CurrentState.PlayerOne.ManaCrystals.Maximum);
             Assert.AreEqual(1, board.CurrentState.PlayerTwo.ManaCrystals.Maximum);
         }

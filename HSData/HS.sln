@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSRepository", "HSRepositor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "Localization\Localization.csproj", "{A345410B-9357-493E-89F4-0BD33C9B6FC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSConsole", "HSConsole\HSConsole.csproj", "{BBCEEC03-8A33-4D45-9556-60ECAA816C7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A345410B-9357-493E-89F4-0BD33C9B6FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A345410B-9357-493E-89F4-0BD33C9B6FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A345410B-9357-493E-89F4-0BD33C9B6FC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBCEEC03-8A33-4D45-9556-60ECAA816C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBCEEC03-8A33-4D45-9556-60ECAA816C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBCEEC03-8A33-4D45-9556-60ECAA816C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBCEEC03-8A33-4D45-9556-60ECAA816C7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
