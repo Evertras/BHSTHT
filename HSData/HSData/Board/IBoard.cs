@@ -1,4 +1,6 @@
-﻿namespace HSData
+﻿using System;
+
+namespace HSData
 {
     /// <summary>
     /// Defines an interface for a generic board that manages state changes
@@ -8,5 +10,7 @@
         IBoardState CurrentState { get; }
 
         void ApplyEvent(IGameEvent gameEvent);
+
+        event Action<IBoard> StateChanged;
     }
 }

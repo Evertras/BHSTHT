@@ -37,7 +37,11 @@ namespace HSConsole
 
             ui.DisplayBoard();
 
-            Console.ReadKey();
+            Console.ReadKey(true);
+
+            board.ApplyEvent(new GameEventTurnEnd());
+
+            Console.ReadKey(true);
         }
     }
 }

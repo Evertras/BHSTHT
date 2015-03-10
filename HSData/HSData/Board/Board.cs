@@ -11,6 +11,8 @@ namespace HSData
     /// </summary>
     public class Board : IBoard
     {
+        public event Action<IBoard> StateChanged;
+
         public struct BoardStateHistory
         {
             internal BoardStateHistory(IGameEvent gameEvent, IBoardState boardState)
@@ -32,6 +34,7 @@ namespace HSData
         }
 
         private readonly List<BoardStateHistory> boardStates = new List<BoardStateHistory>();
+
 
         /// <summary>
         /// Creates an initial board state that can then be acted upon
@@ -59,6 +62,8 @@ namespace HSData
         public void ApplyEvent(IGameEvent gameEvent)
         {
             boardStates.Add(new BoardStateHistory(gameEvent, gameEvent.Apply(CurrentState)));
+
+            StateChanged?.Invoke(this);
         }
     }
 }

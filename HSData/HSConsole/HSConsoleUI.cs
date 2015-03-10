@@ -16,6 +16,8 @@ namespace HSConsole
         public HSConsoleUI(Board board)
         {
             Board = board;
+
+            Board.StateChanged += b => DisplayBoard();
         }
 
         private void DrawPlayerLine(IPlayerState playerState)
@@ -36,6 +38,7 @@ namespace HSConsole
 
         public void DisplayBoard()
         {
+            WindowHeight = 40;
             var originalForegroundColor = ForegroundColor;
 
             var activePlayer = Board.CurrentState.ActivePlayer == BoardState.PlayerTurn.PlayerOne ? Board.CurrentState.PlayerOne : Board.CurrentState.PlayerTwo;
@@ -45,10 +48,11 @@ namespace HSConsole
 
             Clear();
 
+            // Draw inactive player on top
             DrawPlayerLine(inactivePlayer);
 
+            // Draw active player on bottom
             CursorTop = WindowHeight - 2;
-
             DrawPlayerLine(activePlayer);
 
             ForegroundColor = originalForegroundColor;
