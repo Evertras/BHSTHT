@@ -12,7 +12,7 @@ namespace HSDataTest
         {
             const int expectedMax = 10;
 
-            ManaCrystalState state = new ManaCrystalState(expectedMax - 1, expectedMax - 1);
+            IManaCrystalState state = new ManaCrystalState(expectedMax - 1, expectedMax - 1);
 
             state = state.BeginTurn();
 
@@ -24,7 +24,7 @@ namespace HSDataTest
         {
             const int expectedMax = 10;
 
-            ManaCrystalState state = new ManaCrystalState(expectedMax, expectedMax);
+            IManaCrystalState state = new ManaCrystalState(expectedMax, expectedMax);
 
             state = state.BeginTurn();
 
@@ -50,6 +50,15 @@ namespace HSDataTest
         public void CannotHaveCurrentHigherThanMax()
         {
             ManaCrystalState state = new ManaCrystalState(6, 5);
+        }
+
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [TestMethod]
+        public void CannotUseMoreCrystalsThanAvailable()
+        {
+            ManaCrystalState state = new ManaCrystalState(5, 5);
+
+            state.Use(6);
         }
     }
 }

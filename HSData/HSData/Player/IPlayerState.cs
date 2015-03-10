@@ -48,6 +48,12 @@
         IPlayerState AlterHand(IHandState hand);
 
         /// <summary>
+        /// Uses a given amount of mana, returning a new player state representing the updated mana state
+        /// </summary>
+        /// <param name="amount">How many mana crystals to use</param>
+        IPlayerState UseMana(int amount);
+
+        /// <summary>
         /// Begins the turn, applying all applicable events and returning the updated state
         /// </summary>
         IPlayerState BeginTurn();

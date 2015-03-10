@@ -18,6 +18,12 @@
         /// <summary>
         /// Begins the turn, returning a new state representing the mana crystals available to the player at the beginning of the turn
         /// </summary>
-        ManaCrystalState BeginTurn();
+        IManaCrystalState BeginTurn();
+
+        /// <summary>
+        /// Uses a given number of mana crystals
+        /// </summary>
+        /// <param name="amount">How many mana crystals to use</param>
+        IManaCrystalState Use(int amount);
     }
 }

@@ -15,8 +15,6 @@ namespace HSConsole
         public IBoard Board { get; }
         public ILocalizer Localizer { get; }
 
-        private readonly List<LocalizedString> messages = new List<LocalizedString>();
-
         public HSConsoleUI(IBoard board, ILocalizer localizer)
         {
             if (board == null)
@@ -81,18 +79,27 @@ namespace HSConsole
                 }
 
                 Write($"{(i + 1) % 10}) {Localizer.Localize(card.NameKey)} ({card.Cost})");
+
+                if (card.RequiresTarget)
+                {
+                    Write(" (T)");
+                }
             }
         }
 
-        private void DrawMessages()
+        private void DrawHistory()
         {
-            for (int i = 0; i < Board.History.Count; ++i)
+            const int messagesToDisplay = 30;
+
+            var eventsToDisplay = Board.History.Skip(Math.Max(0, Board.History.Count - messagesToDisplay)).ToArray();
+
+            for (int i = 0; i < eventsToDisplay.Count(); ++i)
             {
                 CursorTop = 4 + i;
                 CursorLeft = WindowWidth / 2;
                 ForegroundColor = ConsoleColor.Gray;
 
-                var info = Board.History[i];
+                var info = eventsToDisplay[i];
 
                 if (i >= 1)
                 {
@@ -106,25 +113,22 @@ namespace HSConsole
             WindowHeight = 40;
             var originalForegroundColor = ForegroundColor;
 
-            var activePlayer = Board.CurrentState.ActivePlayer == BoardState.PlayerTurn.PlayerOne ? Board.CurrentState.PlayerOne : Board.CurrentState.PlayerTwo;
-            var inactivePlayer = Board.CurrentState.ActivePlayer == BoardState.PlayerTurn.PlayerOne ? Board.CurrentState.PlayerTwo : Board.CurrentState.PlayerOne;
-
             BackgroundColor = ConsoleColor.DarkGray;
 
             Clear();
 
             // Draw inactive player on top
-            DrawPlayer(inactivePlayer);
+            DrawPlayer(Board.CurrentState.InactivePlayerState);
 
             // Draw active player on bottom
             CursorTop = WindowHeight - 3;
-            DrawPlayer(activePlayer);
+            DrawPlayer(Board.CurrentState.ActivePlayerState);
 
             // Display the game history
-            DrawMessages();
+            DrawHistory();
 
             // Show the active player's hand
-            DrawHand(activePlayer);
+            DrawHand(Board.CurrentState.ActivePlayerState);
 
             ForegroundColor = originalForegroundColor;
         }

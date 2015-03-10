@@ -48,6 +48,7 @@
     <Compile Include="CardEffects\CardEffectDamageOpposingHero.cs" />
     <Compile Include="CardEffects\CardEffectDraw.cs" />
     <Compile Include="CardEffects\CardEffectHeal.cs" />
+    <Compile Include="CardEffects\CardEffectHealActiveHero.cs" />
     <Compile Include="CardEffects\CardEffectUntargeted.cs" />
     <Compile Include="CardEffects\ICardEffect.cs" />
     <Compile Include="Cards\ICard.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="GameEvents\GameEventCardPlayed.cs" />
     <Compile Include="GameEvents\GameEventDamageOpposingHero.cs" />
     <Compile Include="GameEvents\GameEventDraw.cs" />
+    <Compile Include="GameEvents\GameEventHealActiveHero.cs" />
     <Compile Include="GameEvents\GameEventTargeted.cs" />
     <Compile Include="GameEvents\GameEventTargetedDamage.cs" />
     <Compile Include="CardEffects\CardEffectTargeted.cs" />

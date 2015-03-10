@@ -34,7 +34,7 @@ namespace HSRepository
 
         private Card GenerateHealCard(int id, int cost, int heal)
         {
-            return new Card("HealFor" + heal.ToString(), id, cost, new List<CardEffect> { new CardEffectHeal(heal) });
+            return new Card("HealFor" + heal.ToString(), id, cost, new List<CardEffect> { new CardEffectHealActiveHero(heal) });
         }
 
         /// <summary>

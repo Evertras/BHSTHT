@@ -44,7 +44,45 @@ namespace HSConsole
 
                 var keyInput = Console.ReadKey(true);
 
-                board.ApplyEvent(new GameEventTurnEnd());
+                if (keyInput.Key == ConsoleKey.E)
+                {
+                    board.ApplyEvent(new GameEventTurnEnd());
+                }
+                else if (keyInput.KeyChar > '0' && keyInput.KeyChar < '9')
+                {
+                    int selectedCardIndex = int.Parse(keyInput.KeyChar.ToString());
+
+                    // 0 index it
+                    if (selectedCardIndex == 0)
+                    {
+                        selectedCardIndex = 9;
+                    }
+                    else
+                    {
+                        --selectedCardIndex;
+                    }
+
+                    if (selectedCardIndex <= board.CurrentState.ActivePlayerState.Hand.Cards.Count)
+                    {
+                        var cardToPlay = board.CurrentState.ActivePlayerState.Hand.Cards[selectedCardIndex];
+
+                        if (cardToPlay.Cost > board.CurrentState.ActivePlayerState.ManaCrystals.Current)
+                        {
+                            Console.Beep();
+                        }
+                        else
+                        {
+                            if (cardToPlay.RequiresTarget)
+                            {
+                                throw new NotImplementedException("Can't play targeted cards yet");
+                            }
+                            else
+                            {
+                                board.PlayCard(cardToPlay);
+                            }
+                        }
+                    }
+                }
             }
         }
     }

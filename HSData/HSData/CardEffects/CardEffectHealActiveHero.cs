@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HSData
 {
-    public class CardEffectDamageOpposingHero : CardEffectUntargeted
+    public class CardEffectHealActiveHero : CardEffectUntargeted
     {
-        public CardEffectDamageOpposingHero(int amount)
+        public CardEffectHealActiveHero(int amount)
         {
             Amount = amount;
         }
@@ -17,7 +17,7 @@ namespace HSData
 
         public override IGameEvent GenerateEvent()
         {
-            return new GameEventDamageOpposingHero(Amount);
+            return new GameEventHealActiveHero(Amount);
         }
     }
 }

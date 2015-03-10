@@ -124,5 +124,10 @@ namespace HSData
         {
             return new PlayerState(BattleTag, Hero, ManaCrystals, Deck, hand);
         }
+
+        public IPlayerState UseMana(int amount)
+        {
+            return new PlayerState(BattleTag, Hero, ManaCrystals.Use(amount), Deck, Hand);
+        }
     }
 }

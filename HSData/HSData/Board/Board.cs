@@ -68,7 +68,12 @@ namespace HSData
                 throw new InvalidOperationException("Active player is not holding the card that's being played");
             }
 
-            var updatedActivePlayerState = CurrentState.ActivePlayerState.AlterHand(activeHand.RemoveCard(card));
+            if (CurrentState.ActivePlayerState.ManaCrystals.Current < card.Cost)
+            {
+                throw new InvalidOperationException("Not enough mana");
+            }
+
+            var updatedActivePlayerState = CurrentState.ActivePlayerState.AlterHand(activeHand.RemoveCard(card)).UseMana(card.Cost);
 
             boardStates.Add(new BoardStateHistory(new GameEventCardPlayed(card), CurrentState.AlterActivePlayer(updatedActivePlayerState)));
 

@@ -7,23 +7,23 @@ using Localization;
 
 namespace HSData
 {
-    public class GameEventDamageOpposingHero : IGameEvent
+    public class GameEventHealActiveHero : IGameEvent
     {
         public int Amount { get; }
 
-        public GameEventDamageOpposingHero(int amount)
+        public GameEventHealActiveHero(int amount)
         {
             Amount = amount;
         }
 
         public IBoardState Apply(IBoardState initialState)
         {
-            return initialState.AlterInactivePlayer(initialState.InactivePlayerState.AlterHero(initialState.InactivePlayerState.Hero.Damage(Amount)));
+            return initialState.AlterActivePlayer(initialState.ActivePlayerState.AlterHero(initialState.InactivePlayerState.Hero.Heal(Amount)));
         }
 
         public LocalizedString Describe(IBoardState boardState, ILocalizer localizer)
         {
-            return localizer.LocalizeFormat("HeroDamaged", boardState.InactivePlayerState.BattleTag);
+            return localizer.LocalizeFormat("HeroHealed", boardState.ActivePlayerState.BattleTag);
         }
     }
 }

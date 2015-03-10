@@ -39,11 +39,26 @@ namespace HSData
         public int Maximum { get; }
         public int Current { get; }
 
-        public ManaCrystalState BeginTurn()
+        public IManaCrystalState BeginTurn()
         {
             int newMax = Min(10, Maximum + 1);
 
             return new ManaCrystalState(newMax, newMax);
+        }
+
+        public IManaCrystalState Use(int amount)
+        {
+            if (amount > Current)
+            {
+                throw new ArgumentOutOfRangeException("Amount cannot be greater than available crystals");
+            }
+
+            if (amount < 1)
+            {
+                throw new ArgumentOutOfRangeException("Amount must be a positive integer");
+            }
+
+            return new ManaCrystalState(Current - amount, Maximum);
         }
     }
 }
