@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSData", "HSData\HSData.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSDataTest", "HSDataTest\HSDataTest.csproj", "{FCACF8CD-7B8D-41E3-9647-715E2E505028}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSRepository", "HSRepository\HSRepository.csproj", "{F2B4C916-BED0-4F7C-AA37-BFB3E1E04701}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Localization", "Localization\Localization.csproj", "{A345410B-9357-493E-89F4-0BD33C9B6FC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FCACF8CD-7B8D-41E3-9647-715E2E505028}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCACF8CD-7B8D-41E3-9647-715E2E505028}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCACF8CD-7B8D-41E3-9647-715E2E505028}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2B4C916-BED0-4F7C-AA37-BFB3E1E04701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2B4C916-BED0-4F7C-AA37-BFB3E1E04701}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2B4C916-BED0-4F7C-AA37-BFB3E1E04701}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2B4C916-BED0-4F7C-AA37-BFB3E1E04701}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A345410B-9357-493E-89F4-0BD33C9B6FC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A345410B-9357-493E-89F4-0BD33C9B6FC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A345410B-9357-493E-89F4-0BD33C9B6FC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A345410B-9357-493E-89F4-0BD33C9B6FC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
