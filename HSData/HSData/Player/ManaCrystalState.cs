@@ -13,6 +13,8 @@ namespace HSData
     /// </summary>
     public class ManaCrystalState
     {
+        public static readonly ManaCrystalState StartingValue = new ManaCrystalState(0, 0);
+
         public ManaCrystalState(int current, int maximum)
         {
             if (current < 0)

@@ -8,5 +8,10 @@ namespace HSData
 {
     public abstract class CardEffect
     {
+        public virtual bool RequiresTarget {  get { return false; } }
+
+        public abstract IGameEvent GenerateEvent(IBoardEntity target);
+
+        public abstract IGameEvent GenerateEvent();
     }
 }

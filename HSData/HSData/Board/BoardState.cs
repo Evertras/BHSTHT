@@ -12,9 +12,14 @@ namespace HSData
     public class BoardState
     {
         /// <summary>
-        /// The players on the board.  Each player contains its own information of its deck, hero, minions, mana crystals, etc.
+        /// The player one on the board.  Each player contains its own information of its deck, hero, minions, mana crystals, etc.
         /// </summary>
-        public IReadOnlyList<PlayerState> Players { get; }
+        public PlayerState PlayerOne { get; }
+
+        /// <summary>
+        /// The player two on the board.  Each player contains its own information of its deck, hero, minions, mana crystals, etc.
+        /// </summary>
+        public PlayerState PlayerTwo { get; }
 
         /// <summary>
         /// Currently we only support a two player board, and each player must be unique
@@ -31,11 +36,8 @@ namespace HSData
                 throw new ArgumentException("Players cannot be set as a reference to each other");
             }
 
-            Players = new List<PlayerState>
-            {
-                playerOne,
-                playerTwo
-            };
+            PlayerOne = playerOne;
+            PlayerTwo = playerTwo;
         }
     }
 }

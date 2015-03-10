@@ -21,6 +21,17 @@ namespace HSDataTest
         }
 
         [TestMethod]
+        public void HeroCanBeDamagedBelowZero()
+        {
+            const int damageAmount = initialHP + 1;
+            IBoardEntity hero = new HeroState(initialHP, initialHP, initialHP);
+
+            hero = hero.Damage(damageAmount);
+
+            Assert.AreEqual(initialHP - damageAmount, hero.CurrentHealth);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void HeroCannotBeDamagedForNegative()
         {
