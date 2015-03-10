@@ -59,7 +59,7 @@ namespace HSRepository
             // h 8
             cards.Add(new Card("Legendary", 8, 5, new List<ICardEffect>
             {
-                new CardEffectDamage(4),
+                new CardEffectDamageOpposingHero(4),
                 new CardEffectActiveHeroRestoreMana(1),
                 new CardEffectMessage("YouWillNeverDefeat")
             }));
