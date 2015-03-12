@@ -1,4 +1,5 @@
 ﻿TurnEnded The turn ended
+EndTurnCommand End Turn
 
 CardPlayed {0} played {1}
 DrawCard {0} drew a card

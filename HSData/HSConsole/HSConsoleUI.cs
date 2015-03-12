@@ -62,16 +62,19 @@ namespace HSConsole
 
         private void DrawHand(IPlayerState playerState)
         {
+            bool canPlayAny = false;
+
             for (int i = 0; i < playerState.Hand.Cards.Count; ++i)
             {
                 var card = playerState.Hand.Cards[i];
 
-                CursorTop = WindowHeight - (3 + playerState.Hand.Cards.Count) + i;
+                CursorTop = WindowHeight - (4 + playerState.Hand.Cards.Count) + i;
                 CursorLeft = 4;
 
                 if (card.Cost <= playerState.ManaCrystals.Current)
                 {
                     ForegroundColor = ConsoleColor.Green;
+                    canPlayAny = true;
                 }
                 else
                 {
@@ -85,6 +88,13 @@ namespace HSConsole
                     Write(" (T)");
                 }
             }
+
+            ForegroundColor = canPlayAny ? ConsoleColor.Yellow : ConsoleColor.Green;
+            CursorTop = WindowHeight - 4;
+            CursorLeft = 4;
+
+            Write("e) ");
+            Write(Localizer.Localize("EndTurnCommand"));
         }
 
         private void DrawHistory()
