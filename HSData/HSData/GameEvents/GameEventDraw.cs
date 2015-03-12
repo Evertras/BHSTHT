@@ -22,7 +22,7 @@ namespace HSData
         {
             string activeBattleTag = boardState.ActivePlayerState.BattleTag;
 
-            return new LocalizedString("sdfkj", $"{activeBattleTag} {localizer.Localize("DrawCard")}");
+            return localizer.LocalizeFormat("DrawCard", activeBattleTag);
         }
     }
 }

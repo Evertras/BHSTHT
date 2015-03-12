@@ -48,7 +48,7 @@ namespace Localization
             }
             catch (KeyNotFoundException)
             {
-                return errorNotFound;
+                return new LocalizedString(key, "ERR NF - " + key);
             }
         }
 
@@ -60,11 +60,11 @@ namespace Localization
             }
             catch (KeyNotFoundException)
             {
-                return new GeneratedLocalizedString(errorNotFound.Localized);
+                return new GeneratedLocalizedString("ERR NF - " + formatKey);
             }
             catch (FormatException)
             {
-                return new GeneratedLocalizedString(errorFormat.Localized);
+                return new GeneratedLocalizedString("ERR FORMAT - " + formatKey);
             }
         }
     }

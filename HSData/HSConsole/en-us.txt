@@ -1,7 +1,22 @@
 ﻿TurnEnded The turn ended
 
-CardPlayed {0} played the card {1}
+CardPlayed {0} played {1}
+DrawCard {0} drew a card
 
 HeroDamaged {0} was damaged for {1}!
 HeroHealed {0} was healed for {1}!
 HeroManaRestored {0} restored {1} mana
+
+DamageFor1 Pew Pew
+DamageFor2 Pew Pew Moar
+DamageFor3 Frostbolt
+DamageFor4 Soulfire
+DamageFor5 Fireball... almost
+
+HealFor1 Bandaid
+
+G Mage Hax
+
+Legendary Illidan
+
+YouWillNeverDefeat YOU WILL NEVER DEFEAT ME!

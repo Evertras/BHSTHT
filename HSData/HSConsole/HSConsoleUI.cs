@@ -67,7 +67,7 @@ namespace HSConsole
                 var card = playerState.Hand.Cards[i];
 
                 CursorTop = WindowHeight - (3 + playerState.Hand.Cards.Count) + i;
-                CursorLeft = 6;
+                CursorLeft = 4;
 
                 if (card.Cost <= playerState.ManaCrystals.Current)
                 {
@@ -111,6 +111,7 @@ namespace HSConsole
         public void DisplayBoard()
         {
             WindowHeight = 40;
+            WindowWidth = 100;
             var originalForegroundColor = ForegroundColor;
 
             BackgroundColor = ConsoleColor.DarkGray;

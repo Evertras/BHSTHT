@@ -23,7 +23,7 @@ namespace HSData
 
         public LocalizedString Describe(IBoardState boardState, ILocalizer localizer)
         {
-            return localizer.LocalizeFormat("HeroHealed", boardState.ActivePlayerState.BattleTag);
+            return localizer.LocalizeFormat("HeroHealed", boardState.ActivePlayerState.BattleTag, Amount);
         }
     }
 }

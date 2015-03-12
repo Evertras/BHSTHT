@@ -36,7 +36,7 @@ namespace HSConsole
 
             Board board = new Board(playerOneInitialState, playerTwoInitialState);
 
-            HSConsoleUI ui = new HSConsoleUI(board, new NOPLocalizer());
+            HSConsoleUI ui = new HSConsoleUI(board, new SimpleFileLocalizer("en-us.txt"));
 
             while (board.CurrentState.PlayerOne.IsAlive && board.CurrentState.PlayerTwo.IsAlive)
             {
@@ -48,7 +48,7 @@ namespace HSConsole
                 {
                     board.ApplyEvent(new GameEventTurnEnd());
                 }
-                else if (keyInput.KeyChar > '0' && keyInput.KeyChar < '9')
+                else if (keyInput.KeyChar >= '0' && keyInput.KeyChar <= '9')
                 {
                     int selectedCardIndex = int.Parse(keyInput.KeyChar.ToString());
 
