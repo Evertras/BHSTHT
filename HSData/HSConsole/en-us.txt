@@ -1,0 +1,7 @@
+﻿TurnEnded The turn ended
+
+CardPlayed {0} played the card {1}
+
+HeroDamaged {0} was damaged for {1}!
+HeroHealed {0} was healed for {1}!
+HeroManaRestored {0} restored {1} mana
